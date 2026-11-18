@@ -544,3 +544,5 @@ a{color:inherit}
 .ringctl .key:not(.sig),.axnav .key:not(.sig){background:linear-gradient(#ff7a45,#ec4a10);border-color:#b53a0a;box-shadow:0 2px 0 #b53a0a;color:#fff}
 .ringctl .key.sig,.axnav .key.sig{background:linear-gradient(#ffcb52,#f0a514);border-color:#b27700;box-shadow:0 2px 0 #b27700;color:#1a1200}
 .ringctl .key:active,.axnav .key:active{transform:translateY(2px);box-shadow:none}
+.top .mark{position:fixed;top:0;left:0;margin:0;padding:0;font:400 clamp(30px,3.4vw,52px)/.78 'Monoton',var(--wide);letter-spacing:0;font-style:normal;z-index:61}
+@media(max-width:560px){.top .mark{font-size:28px}}
