@@ -10,7 +10,7 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON
 /* ---------- content ---------- */
 const TOD=[{h:0,name:'Late night',imgs:[809,876],c:'#3c5fd6',arc:'#22345f'},{h:3,name:'First light',imgs:[659,424],c:'#c9b8e0',arc:'#8e86a8'},{h:6,name:'Morning',imgs:[232,664],c:'#f2d9a0',arc:'#e7cf96'},{h:9,name:'High sun',imgs:[891,200],c:'#fff4d6',arc:'#f4efe2'},{h:12,name:'Afternoon',imgs:[874,198],c:'#efcf7c',arc:'#e9c46a'},{h:15,name:'Golden hour',imgs:[73,408],c:'#ff8a3d',arc:'#ff7a33'},{h:18,name:'Dusk',imgs:[216,418],c:'#e0552b',arc:'#c4452a'},{h:21,name:'Night',imgs:[865,641],c:'#ff9a3c',arc:'#5a3a1c'}];
 const COVERS=[715,167,186,178,703,914,162,165];
-const MOS=[914,252,254,181,276,246,890,893,665];
+const MOS=[914,252,254,181,276,246,890,893,665,392,478,670,814,842,847,255];
 const BRUSH=[217,524,526,245,474,471,172,470];
 const TABLE=[4,5,63,84,90,131,146,175,187,213,223,234,235,242,260,274,285,288,292,313,319,333,346,406,417,430,454,466,476,494,504,515,517,527,544,589,626,645,660,680,684,704,729,772,779,780,792,844,850,884,894,906,915];
 const ROLL=[20,43,77,141,300,332,452,513,791,849,794,311];
@@ -79,16 +79,18 @@ const wh=$('#wh');let wtx=.5,wty=.4,wx=.5,wy=.4,wlast=-1e9;
 wh.addEventListener('pointermove',e=>{const r=wh.getBoundingClientRect();wtx=(e.clientX-r.left)/r.width;wty=(e.clientY-r.top)/r.height;wlast=performance.now()});
 /* iris */
 const iris=$('#iris'),irisF=$('#irisF'),irisPoly=$('#irisS polygon'),irisS=$('#irisS'),tiles=$$('#mos .tl');
-const LA=[[22,14,56,72],[0,0,22,50],[22,0,56,14],[78,0,22,36],[78,36,22,32],[78,68,22,32],[22,86,56,14],[0,50,11,50],[11,50,11,50]];
-const LB=[[0,0,38,58],[38,0,34,32],[72,0,28,58],[38,32,34,26],[0,58,24,42],[24,58,30,42],[54,58,22,42],[76,58,24,22],[76,80,24,20]];
-const g3=c=>[(c%3)*100/3,Math.floor(c/3)*100/3,100/3,100/3],LC=[g3(4),g3(0),g3(1),g3(2),g3(3),g3(5),g3(6),g3(7),g3(8)];
-function irisDraw(){const r=iris.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const p=clamp(-r.top/(r.height-innerHeight),0,1);
-  const w=innerWidth,h=innerHeight,op=clamp(p/.4,0,1),R=10+Math.pow(op,1.3)*Math.hypot(w,h)*.56,rot=op*120*Math.PI/180;
+const L1=[[24,0,52,100]];for(let c=0;c<2;c++)for(let r=0;r<4;r++)L1.push([c*12,r*25,12,25]);for(let r=0;r<4;r++)L1.push([76,r*25,12,25]);for(let r=0;r<3;r++)L1.push([88,r*100/3,12,100/3]);
+const L2=[];{const xs=[0,30,52,80],ws=[30,22,28,20],hs=[[40,20,25,15],[15,35,20,30],[30,15,35,20],[25,30,15,30]];for(let c=0;c<4;c++){let y=0;hs[c].forEach(h=>{L2.push([xs[c],y,ws[c],h]);y+=h})}}
+const L3=[...Array(16)].map((_,i)=>[(i%8)*12.5,Math.floor(i/8)*50,12.5,50]),L4=[...Array(16)].map((_,i)=>[(i%4)*25,Math.floor(i/4)*25,25,25]),LS=[L1,L2,L3,L4];
+let irisPS=0;
+function irisDraw(){const r=iris.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const pt=clamp(-r.top/(r.height-innerHeight),0,1);irisPS+=RM?pt-irisPS:(pt-irisPS)*.075;if(Math.abs(pt-irisPS)<.0005)irisPS=pt;const p=irisPS;
+  const w=innerWidth,h=innerHeight,op=clamp(p/.24,0,1),R=10+Math.pow(op,1.3)*Math.hypot(w,h)*.56,rot=op*120*Math.PI/180;
   const pts=[...Array(7)].map((_,i)=>{const a=rot+i*2*Math.PI/7;return[w/2+R*Math.cos(a),h/2+R*Math.sin(a)]});
   irisF.style.clipPath=`polygon(${pts.map(q=>q[0].toFixed(1)+'px '+q[1].toFixed(1)+'px').join(',')})`;
-  const m=clamp((p-.4)/.6,0,1)*2,sg=Math.min(1,Math.floor(m)),f0=m-sg,f=f0*f0*(3-2*f0),A=[LA,LB][sg],B=[LB,LC][sg];
-  tiles.forEach((el,i)=>{const a=A[i],b=B[i],v=a.map((x,k)=>x+(b[k]-x)*f);el.style.left=v[0]+'%';el.style.top=v[1]+'%';el.style.width=v[2]+'%';el.style.height=v[3]+'%'});
-  $('#irisG').textContent=DV(m<.5?1:m<1.5?2:3);
+  const m=clamp((p-.24)/.72,0,1)*3;
+  tiles.forEach((el,i)=>{const mi=clamp(m*1.25-(i/15)*.75,0,3),sg=Math.min(2,Math.floor(mi)),f0=mi-sg,f=f0*f0*f0*(f0*(f0*6-15)+10),a=LS[sg][i],b=LS[sg+1][i],v=a.map((x,k)=>x+(b[k]-x)*f);
+    el.style.left=v[0].toFixed(3)+'%';el.style.top=v[1].toFixed(3)+'%';el.style.width=v[2].toFixed(3)+'%';el.style.height=v[3].toFixed(3)+'%'});
+  $('#irisG').textContent=DV(Math.min(4,1+Math.round(m)));
   irisS.setAttribute('viewBox',`0 0 ${w} ${h}`);irisPoly.setAttribute('points',pts.map(q=>q.map(v=>v.toFixed(1)).join(',')).join(' '));
   $('#irisP').textContent=Math.round(op*100)+'%';$('#irisBig').style.opacity=(1-op*2.2).toFixed(2)}
 
@@ -145,9 +147,9 @@ function stampAt(x,y,r){const bc=brushCanvas(bi);if(!bc)return;const d=Math.ceil
   sx.globalCompositeOperation='source-over';sx.clearRect(0,0,d,d);sx.drawImage(bc,x-r,y-r,d,d,0,0,d,d);
   sx.globalCompositeOperation='destination-in';const g=sx.createRadialGradient(r,r,0,r,r,r);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.5,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');sx.fillStyle=g;sx.fillRect(0,0,d,d);
   cx.globalCompositeOperation='screen';cx.globalAlpha=.6;cx.drawImage(stamp,x-r,y-r);cx.globalAlpha=1;cx.globalCompositeOperation='source-over'}
-function paintSeg(x0,y0,x1,y1,manual){const L=Math.hypot(x1-x0,y1-y0);if(!L)return;const r=clamp(120-L*1.3,28,120)*dpr,step=Math.max(4,r/dpr*.22),n=Math.min(36,Math.ceil(L/step));
+function paintSeg(x0,y0,x1,y1,manual){const L=Math.hypot(x1-x0,y1-y0);if(!L)return;const r=clamp(230-L*1.6,80,230)*dpr,step=Math.max(6,r/dpr*.2),n=Math.min(36,Math.ceil(L/step));
   for(let i=1;i<=n;i++){const k=i/n;stampAt((x0+(x1-x0)*k)*dpr,(y0+(y1-y0)*k)*dpr,r)}
-  dist+=L;if(dist>(manual?1400:900)){dist=0;setBrush((bi+1)%BRUSH.length,false)}}
+}
 function setBrush(i,manual){bi=i;$('#aiN').textContent='#'+BRUSH[bi];$$('#brushes button').forEach((b,k)=>b.setAttribute('aria-pressed',k===bi));if(manual){shutter();tick()}}
 function autoStep(){const w=cw/dpr,h=chh/dpr;auto+=.011;const x=w*(.5+.38*Math.sin(auto*1.3)),y=h*(.46+.3*Math.sin(auto*2.1+.6));if(apx!==null)paintSeg(apx,apy,x,y,false);apx=x;apy=y}
 function seed(){if(!cw||!bimgs[0]||seeded)return;seeded=true;for(let k=0;k<160;k++)autoStep()}
