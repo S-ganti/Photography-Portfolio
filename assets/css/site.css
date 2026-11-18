@@ -553,3 +553,4 @@ a{color:inherit}
 .top .mark:hover span,.top .mark:focus-visible span{font:400 .86em 'Monoton',var(--wide);text-transform:none;color:var(--ember);text-shadow:0 0 24px rgba(255,90,31,.35)}
 @media(max-width:900px){.top .mark{font-size:24px}}
 @media(max-width:560px){.top .mark{font-size:21px}}
+@media(hover:none){.top .mark span{font:400 .86em 'Monoton',var(--wide);color:var(--ember)}}
