@@ -6,11 +6,11 @@ The portfolio site for Sriharsh Ganti's photography. It is a single static page 
 
 | № | Chapter | What it does |
 |---|---|---|
-| ०१ | Light | The cover (#715) is lit by a lamp that follows the cursor. Clicking fires a flash, and a light meter reads the photo under the lamp. |
-| ०२ | Withheld | The thesis reveals itself word by word. A torch moves across a wall of faceless portraits. A seven-blade iris opens over #914. |
-| ०३ | The Ring | A dial selects twelve plates. It has hardware keys, an LCD readout and a colour palette pulled from each plate. |
-| ०४ | Afterimage | You can paint a long exposure. A film roll develops from negative as it scrolls past, and a shutter-speed slider (1/1000 to 8 seconds) drags the light across eight frames. |
-| ०५ | Contact sheet | Frames open under a loupe. The grease-pencil selects are saved per visitor. |
+| ०१ | Light | A random cover from eight silhouettes, lit by a lamp that follows the cursor. Each click fires the shutter and swaps the cover. A light meter reads the photo under the lamp. |
+| ०२ | Withheld | The thesis reveals itself word by word. A torch moves across a wall of faceless portraits. A seven-blade iris opens onto a mosaic of nine frames that reflows through three grids. |
+| ०३ | The Ring | A 24-hour dial in Devanagari, opening at the current hour in India. Each of eight parts of the day shows plates whose light belongs to it, large, with a palette pulled from each. |
+| ०४ | Afterimage | Paint with light using eight long-exposure frames as brushes. A film roll develops from negative each time it passes, and a light table of outtakes can be dragged in any direction. |
+| ०५ | Contact sheet | Frames open under a loupe. Grease-pencil selects become "Your edit" and open a print enquiry email with the frame numbers. |
 | ०६ | Archive | A masonry wall of 46 frames that can be filtered by Street, Motion, Light, Sea or Built. |
 | ०७ | Contact | A stacked wordmark, with live clocks for India and Europe. |
 

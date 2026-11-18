@@ -50,12 +50,12 @@
   <img class="lit" id="cl" alt="">
   <div class="fl"></div>
   <div class="lampdot" aria-hidden="true"></div>
-  <p class="hint" id="hint">Move the light · click to flash</p>
+  <p class="hint" id="hint">Move the light · click for the shutter</p>
   <h1>Sriharsh<em>Ganti</em></h1>
   <div class="tate" aria-hidden="true">Photographs<i></i>India · Europe</div>
   <div class="meter" aria-hidden="true">
     <div class="sc"><span>−3</span><span>−2</span><span>−1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span><div class="nd" id="nd"></div></div>
-    <div class="lbl"><span>Meter</span><b id="ev">0.0</b></div>
+    <div class="lbl"><span>Meter · <b id="coverN"></b></span><b id="ev">0.0</b></div>
   </div>
 </section>
 
@@ -69,60 +69,62 @@
     <div class="wgrid">
       <figure class="w1"><img data-n="689" alt="Frame 689"><figcaption><span class="dv">०१</span><span>#689</span></figcaption></figure>
       <figure class="w2"><img data-n="672" alt="Frame 672"><figcaption><span class="dv">०२</span><span>#672</span></figcaption></figure>
-      <figure class="w3"><img data-n="690" alt="Frame 690"><figcaption><span class="dv">०३</span><span>#690</span></figcaption></figure>
-      <figure class="w4"><img data-n="229" alt="Frame 229"><figcaption><span class="dv">०४</span><span>#229</span></figcaption></figure>
-      <figure class="w5"><img data-n="673" alt="Frame 673"><figcaption><span class="dv">०५</span><span>#673</span></figcaption></figure>
-      <figure class="w6"><img data-n="693" alt="Frame 693"><figcaption><span class="dv">०६</span><span>#693</span></figcaption></figure>
-      <figure class="w7"><img data-n="243" alt="Frame 243"><figcaption><span class="dv">०७</span><span>#243</span></figcaption></figure>
-      <figure class="w8"><img data-n="705" alt="Frame 705"><figcaption><span class="dv">०८</span><span>#705</span></figcaption></figure>
+      <figure class="w3"><img data-n="229" alt="Frame 229"><figcaption><span class="dv">०३</span><span>#229</span></figcaption></figure>
+      <figure class="w4"><img data-n="243" alt="Frame 243"><figcaption><span class="dv">०४</span><span>#243</span></figcaption></figure>
+      <figure class="w5"><img data-n="705" alt="Frame 705"><figcaption><span class="dv">०५</span><span>#705</span></figcaption></figure>
+      <figure class="w6"><img data-n="534" alt="Frame 534"><figcaption><span class="dv">०६</span><span>#534</span></figcaption></figure>
+      <figure class="w7"><img data-n="813" alt="Frame 813"><figcaption><span class="dv">०७</span><span>#813</span></figcaption></figure>
+      <figure class="w8"><img data-n="832" alt="Frame 832"><figcaption><span class="dv">०८</span><span>#832</span></figcaption></figure>
     </div>
     <div class="wdark" aria-hidden="true"></div>
   </div>
   <div class="iris" id="iris">
     <div class="stick wrap">
-      <div class="frame" id="irisF"><img data-n="914" alt="Frame 914, two figures in hard light"></div>
+      <div class="frame" id="irisF"><div class="mos" id="mos"></div></div>
       <svg id="irisS" aria-hidden="true"><polygon fill="none" stroke="#ece6d9" stroke-width="1" stroke-opacity=".55"></polygon></svg>
       <div class="big" id="irisBig">open up</div>
-      <div class="read wrap"><span>Aperture <b id="irisP">0%</b></span><span>Plate <b>#914</b></span></div>
+      <div class="read wrap"><span>Aperture <b id="irisP">0%</b></span><span>Grid <b class="dv" id="irisG">०१</b> / <span class="dv">०३</span></span></div>
     </div>
   </div>
 </section>
 
 <!-- ०३ THE RING -->
 <section class="ringch wrap" id="c3" data-name="The Ring">
-  <div class="ch-head"><span class="dv">०३</span><h2>The <em>Ring</em></h2><span class="lbl">Twelve plates · drag the bezel</span></div>
+  <div class="ch-head"><span class="dv">०३</span><h2>The <em>Ring</em></h2><span class="lbl">A day of light · turn the hours</span></div>
   <div class="ringwrap">
-    <div class="ringbox" id="ringbox" data-cur="drag">
-      <div class="lens"><img id="rA" alt=""><img id="rB" class="out" alt=""></div>
-      <svg class="dial" id="dial" viewBox="-100 -100 200 200" role="slider" tabindex="0" aria-label="Plate selector, use arrow keys" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1">
-        <g id="dialG"><circle r="97" fill="none" stroke-width=".6"/><g id="ticks"></g><g id="nums"></g></g>
-      </svg>
-      <div class="ptr" aria-hidden="true"></div>
-    </div>
-    <div class="deck">
-      <div class="now"><span id="nowN">#252</span><span class="dv" id="nowD">०१</span></div>
-      <div class="panel">
-        <button class="key" id="prev" aria-label="Previous plate">◀</button>
-        <div class="lcd" aria-live="polite"><span>PLATE <span class="dv" id="lcdD">०१</span>/<span class="dv">१२</span></span><span id="lcdN">#252</span></div>
-        <button class="key sig" id="next" aria-label="Next plate">▶</button>
+    <div>
+      <div class="ringbox" id="ringbox" data-cur="turn">
+        <svg class="dial" id="dial" viewBox="-100 -100 200 200" role="slider" tabindex="0" aria-label="Hour of the day, use arrow keys" aria-valuemin="0" aria-valuemax="23" aria-valuenow="0">
+          <g id="dialG"></g>
+          <circle r="57" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width=".4"/>
+        </svg>
+        <div class="ptr" aria-hidden="true"></div>
+        <div class="rc" aria-hidden="true"><span class="g" id="rcG">☀</span><span class="t" id="rcT">००:००</span><span class="s" id="rcS">Hour</span></div>
       </div>
-      <div>
-        <p class="lbl" style="margin:0 0 10px">Palette pulled from this plate · tap to copy</p>
-        <div class="swatch" id="sw"></div>
-        <p class="copied" id="copied" aria-live="polite"></p>
+      <div class="ringctl">
+        <button class="key" id="prev" aria-label="One hour back">◀</button>
+        <div class="lcd" aria-live="polite"><span>HOUR <span class="dv" id="lcdD">००</span></span><span id="lcdN">#000</span></div>
+        <button class="key sig" id="next" aria-label="One hour forward">▶</button>
+        <button class="tog" id="nowB" style="color:var(--fg)">Now, in India</button>
       </div>
-      <p class="lbl hint2">Drag the ring, use the keys, or the arrow keys</p>
     </div>
+    <figure class="plate">
+      <div class="pf" id="pf"><img id="pA" alt=""><img id="pB" class="out" alt=""></div>
+      <figcaption><span class="seg" id="pSeg">Hour</span><span class="lbl" id="pN"></span></figcaption>
+      <div><div class="swatch" id="sw"></div><p class="copied" id="copied" aria-live="polite"></p></div>
+    </figure>
   </div>
+  <p class="lbl ringnote">The ring opens at the current hour in India. Each plate sits at the hour its light belongs to, not the hour it was shot.</p>
 </section>
 
 <!-- ०४ AFTERIMAGE -->
 <section id="c4" data-name="Afterimage">
-  <div class="ai-hero wrap" id="aih" data-cur="hold">
-    <canvas id="cv" aria-label="Frame 217 smeared by movement"></canvas>
-    <div class="say wrap"><span><span class="dv">०४</span> Afterimage</span><span>Hold and drag to paint · release to settle · <b id="sh">shutter closed</b></span></div>
+  <div class="ai-hero wrap" id="aih" data-cur="torch">
+    <canvas id="cv" aria-label="A canvas you paint on with long-exposure photographs"></canvas>
+    <div class="say wrap"><span><span class="dv">०४</span> Afterimage</span><span>Drag to paint with light · click to change the light · painting with <b id="aiN">#217</b></span></div>
+    <div class="brushes wrap" id="brushes" role="group" aria-label="Choose the light to paint with"></div>
     <h2><span>After</span><span><em>image</em></span></h2>
-    <button class="shutter" id="shb" aria-pressed="false">Hold</button>
+    <div class="ai-ctl"><button id="aiNext">Next light</button><button id="aiClear">Clear</button></div>
   </div>
   <div class="strip" id="strip">
     <div class="stick wrap">
@@ -130,27 +132,26 @@
       <div class="film" id="film"></div>
     </div>
   </div>
-  <div class="trip-sec wrap">
-    <div class="ch-head"><span class="dv">०४</span><h2>Shutter <em>speed</em></h2><span class="lbl">Eight frames · one dial</span></div>
-    <div class="trip-head">
-      <p style="margin:0;max-width:40ch;color:var(--mute)">Slide from a fast shutter to a slow one and watch the light drag across eight frames.</p>
-      <div class="ss">
-        <div class="ssread"><output id="ssv" for="exp">1/125</output><span class="lbl">sec</span></div>
-        <label for="exp" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Shutter speed</label>
-        <input type="range" id="exp" min="0" max="7" step="1" value="2" aria-valuetext="1/125 second">
-        <div class="ssticks" id="ssticks" aria-hidden="true"></div>
-      </div>
+  <div class="lt-sec">
+    <div class="wrap">
+      <div class="ch-head"><span class="dv">०४</span><h2>Light <em>table</em></h2><span class="lbl">Outtakes · drag in any direction</span></div>
+      <p class="intro">The frames that didn't make the edit, spread across a light table that never ends. Drag to move around, and tap a print to put it under the loupe.</p>
     </div>
-    <div class="trip" id="trip"></div>
+    <div class="lt" id="lt" data-cur="drag"><div class="lt-in" id="ltIn"></div><span class="lt-hint">Drag · tap a print</span></div>
   </div>
   <div class="marq" aria-hidden="true"><div id="marq"></div></div>
 </section>
 
 <!-- ०५ CONTACT SHEET -->
 <section class="sheet wrap" id="c5" data-name="Contact sheet">
-  <div class="ch-head"><span class="dv">०५</span><h2>Contact <em>sheet</em></h2><span class="lbl">Open a frame under the loupe · mark your selects</span></div>
+  <div class="ch-head"><span class="dv">०५</span><h2>Contact <em>sheet</em></h2><span class="lbl">Mark your selects · ask Sri for prints</span></div>
   <div class="sel-bar"><span class="count">Your selects <b id="selN">०</b></span><button id="selClear">Wipe the grease pencil</button></div>
   <div class="cs" id="cs"></div>
+  <div class="tray" id="tray" hidden>
+    <div><p class="lbl" style="margin:0 0 10px">Your edit</p><div class="tray-t" id="trayT"></div></div>
+    <div class="tray-act"><a class="btn" id="mailSel" href="mailto:gantisriharsh@gmail.com">Ask about prints ↗</a><button class="btn ghost" id="copySel">Copy frame list</button></div>
+    <p class="lbl note" id="trayNote">Opens your email to Sri with these frames listed.</p>
+  </div>
 </section>
 <!-- ०६ ARCHIVE -->
 <section class="arch wrap" id="c6" data-name="Archive">
@@ -183,7 +184,7 @@
 
 <div class="keys" id="keys" hidden role="dialog" aria-label="Keyboard shortcuts"><div class="kbox"><h3>Shortcuts</h3><dl>
 <dt><kbd>1</kbd>–<kbd>7</kbd></dt><dd>Jump to a chapter</dd>
-<dt><kbd>F</kbd></dt><dd>Fire the flash</dd>
+<dt><kbd>F</kbd></dt><dd>Fire the shutter for a new cover</dd>
 <dt><kbd>S</kbd></dt><dd>Sound on or off</dd>
 <dt><kbd>P</kbd></dt><dd>Darkroom or print</dd>
 <dt><kbd>←</kbd><kbd>→</kbd></dt><dd>Turn the ring, or step through the loupe</dd>
