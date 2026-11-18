@@ -534,3 +534,13 @@ a{color:inherit}
 .dealrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:14px}
 .notes{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 @media(max-width:700px){.notes{grid-template-columns:1fr!important}}
+
+/* v12 */
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.top .mark{color:#fff}.top .mark span{color:var(--ember)}
+.mos .tl span{display:none}
+.mos .tl:nth-child(odd) img{filter:grayscale(1) contrast(1.35) brightness(.95)}
+.ai-hero h2{font-size:clamp(50px,11vw,190px)}
+.ringctl .key:not(.sig),.axnav .key:not(.sig){background:linear-gradient(#ff7a45,#ec4a10);border-color:#b53a0a;box-shadow:0 2px 0 #b53a0a;color:#fff}
+.ringctl .key.sig,.axnav .key.sig{background:linear-gradient(#ffcb52,#f0a514);border-color:#b27700;box-shadow:0 2px 0 #b27700;color:#1a1200}
+.ringctl .key:active,.axnav .key:active{transform:translateY(2px);box-shadow:none}
