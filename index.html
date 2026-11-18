@@ -16,7 +16,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@500;700&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=9">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&text=open%20up&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&text=Ring&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tilt+Prism&text=image&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ballet&text=one%20day&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&text=sheet&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Redacted+Script&text=held&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&text=table&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&text=archive&display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=10">
 <link rel="preload" as="image" href="assets/img/715.jpg">
 </head>
 <body>
@@ -65,7 +73,7 @@
     <p id="thesis">Every face here is withheld, by smoke, a hand, a blur or a shadow. <span class="em">What remains is the exposure.</span></p>
   </div>
   <div class="withheld wrap nocur" id="wh" data-cur="torch">
-    <div class="ch-head"><span class="dv">०२</span><h2>With<em>held</em></h2><span class="lbl">Carry the lamp across the wall</span></div>
+    <div class="ch-head"><span class="dv">०२</span><h2>With<em class="fx-held" title="held">held</em></h2><span class="lbl">Carry the lamp across the wall</span></div>
     <div class="wgrid">
       <figure class="w1"><img data-n="229" alt="Frame 229"><figcaption><span class="dv">०१</span><span>#229</span></figcaption></figure>
       <figure class="w2"><img data-n="243" alt="Frame 243"><figcaption><span class="dv">०२</span><span>#243</span></figcaption></figure>
@@ -82,7 +90,7 @@
     <div class="stick wrap">
       <div class="frame" id="irisF"><div class="mos" id="mos"></div></div>
       <svg id="irisS" aria-hidden="true"><polygon fill="none" stroke="#ece6d9" stroke-width="1" stroke-opacity=".55"></polygon></svg>
-      <div class="big" id="irisBig">open up</div>
+      <div class="big fx-open" id="irisBig">open up</div>
       <div class="read wrap"><span>Aperture <b id="irisP">0%</b></span><span>Grid <b class="dv" id="irisG">०१</b> / <span class="dv">०४</span></span></div>
     </div>
   </div>
@@ -90,7 +98,7 @@
 
 <!-- ०३ THE RING -->
 <section class="ringch wrap" id="c3" data-name="The Ring">
-  <div class="ch-head"><span class="dv">०३</span><h2>The <em>Ring</em></h2><span class="lbl">A day of light · turn the hours</span></div>
+  <div class="ch-head"><span class="dv">०३</span><h2>The <em class="fx-ring">Ring</em></h2><span class="lbl">A day of light · turn the hours</span></div>
   <div class="ringwrap">
     <div>
       <div class="ringbox" id="ringbox" data-cur="turn">
@@ -123,19 +131,19 @@
     <canvas id="cv" aria-label="A canvas you paint on with long-exposure photographs"></canvas>
     <div class="say wrap"><span><span class="dv">०४</span> Afterimage</span><span>Drag to paint with light · click to change the light · painting with <b id="aiN">#217</b></span></div>
     <div class="brushes wrap" id="brushes" role="group" aria-label="Choose the light to paint with"></div>
-    <h2><span>After</span><span><em>image</em></span></h2>
+    <h2><span>After</span><span><em class="fx-image">image</em></span></h2>
     <div class="ai-ctl"><button id="aiNext">Next light</button><button id="aiClear">Clear</button></div>
   </div>
   <div class="strip" id="strip">
     <div class="stick wrap">
-      <div class="sh"><h3>One roll, <em>one day</em></h3><span class="lbl">Scroll or drag inside the strip · each frame develops as it reaches the centre</span></div>
+      <div class="sh"><h3>One roll, <em class="fx-day">one day</em></h3><span class="lbl">Scroll or drag inside the strip · each frame develops as it reaches the centre</span></div>
       <div class="filmwrap" id="fw" data-cur="drag"><div class="film" id="film"></div></div>
       <div class="filmbar" aria-hidden="true"><i id="fbar"></i></div>
     </div>
   </div>
   <div class="lt-sec">
     <div class="wrap">
-      <div class="ch-head"><span class="dv">०४</span><h2>Light <em>table</em></h2><span class="lbl">Outtakes · drag in any direction</span></div>
+      <div class="ch-head"><span class="dv">०४</span><h2>Light <em class="fx-table">table</em></h2><span class="lbl">Outtakes · drag in any direction</span></div>
       <p class="intro">The frames that didn't make the edit, spread across a light table that never ends. Drag to move around, double-click to step back and see more of the table, tap a print to put it under the loupe, and mark the ones you would hang. Your picks re-cut the contact sheet below.</p>
     </div>
     <div class="lt" id="lt" data-cur="drag"><div class="lt-in" id="ltIn"></div><span class="lt-hint">Drag · tap a print · double-click to zoom</span></div>
@@ -145,8 +153,14 @@
 
 <!-- ०५ CONTACT SHEET -->
 <section class="sheet wrap" id="c5" data-name="Contact sheet">
-  <div class="ch-head"><span class="dv">०५</span><h2>Contact <em>sheet</em></h2><span class="lbl">Mark your selects · ask Sri for prints</span></div>
-  <div class="sel-bar"><span class="count">Your selects <b id="selN">०</b></span><button id="selClear">Wipe the grease pencil</button></div>
+  <div class="ch-head"><span class="dv">०५</span><h2>Contact <em class="fx-sheet">sheet</em></h2><span class="lbl">Your edit · build it from anywhere on the site</span></div>
+  <div class="shelp">
+    <div class="st"><span class="dv">०१</span><p>Open any photograph: on the light table, in Withheld, on the Ring or along the roll.</p></div>
+    <div class="st"><span class="dv">०२</span><p>Press <b>Add to contact sheet</b>. It lands here, circled in grease pencil.</p></div>
+    <div class="st"><span class="dv">०३</span><p>When the sheet looks right, ask Sri about prints with one tap below.</p></div>
+  </div>
+  <div class="sel-bar"><span class="count">Your frames <b id="selN">०</b></span><button id="selClear">Wipe the grease pencil</button></div>
+  <div class="fill" id="fill"><span class="lbl">Stuck? Let a theme suggest frames</span></div>
   <div class="tune" id="tune" hidden></div>
   <div class="cs" id="cs"></div>
   <div class="tray" id="tray" hidden>
@@ -157,9 +171,10 @@
 </section>
 <!-- ०६ ARCHIVE -->
 <section class="arch wrap" id="c6" data-name="Archive">
-  <div class="ch-head"><span class="dv">०६</span><h2>The <em>archive</em></h2><span class="lbl">Filter by how the light behaves</span></div>
+  <div class="ch-head"><span class="dv">०६</span><h2>The <em class="fx-arch">archive</em></h2><span class="lbl">Filter by how the light behaves</span></div>
   <div class="chips" id="chips" role="group" aria-label="Filter the archive"></div>
-  <div class="masonry" id="arch"></div>
+  <div class="axgrid" id="arch"></div>
+  <div class="axnav"><button class="key" id="axPrev" aria-label="Previous page">◀</button><div class="lcd"><span>PAGE <span class="dv" id="axP">०१</span>/<span class="dv" id="axT">०१</span></span><span id="axN"></span></div><button class="key sig" id="axNext" aria-label="Next page">▶</button><button class="tog" id="axShuf" style="color:var(--fg)">Shuffle</button><span class="lbl">Swipe or use the keys · tap a frame to inspect it</span></div>
 </section>
 </main>
 
@@ -169,6 +184,13 @@
   <div class="chero">
   <figure class="chero-img"><img id="cImg" alt="Frame 19, a figure in a lit window beside a red wall"></figure>
   <div class="chero-red">
+  <div class="cr-top">
+    <span class="cr-l">Write, commission, or just say hello</span>
+    <a class="cr-mail" href="mailto:gantisriharsh@gmail.com">gantisriharsh@gmail.com</a>
+    <div class="cr-row"><button class="cr-btn" id="copyMail">Copy email</button><a class="cr-btn" href="https://www.instagram.com/absurdly_yours/" target="_blank" rel="noopener">Instagram ↗</a><a class="cr-btn" href="https://www.linkedin.com/in/sriharshganti/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+    <div class="cr-clocks"><div><span>India · IST</span><b><i id="iI">○</i> <span id="tI">--:--</span></b></div><div><span>Europe · CET</span><b><i id="iE">○</i> <span id="tE">--:--</span></b></div></div>
+  </div>
+  <div class="cr-rib" aria-label="Recent frames"><div id="crRib"></div></div>
   <div class="stack" aria-label="Sriharsh Ganti">
     <div class="ln" aria-hidden="true"><span>Sriharsh</span></div>
     <div class="ln" aria-hidden="true"><span>Sriharsh</span></div>
@@ -179,12 +201,6 @@
   </div>
   </div>
   </div>
-  <dl class="fgrid">
-    <div><dt>Email</dt><dd><a class="lnk" href="mailto:gantisriharsh@gmail.com">gantisriharsh@gmail.com</a></dd></div>
-    <div><dt>Instagram</dt><dd><a class="lnk" href="https://www.instagram.com/absurdly_yours/" target="_blank" rel="noopener">@Absurdly_yours ↗</a></dd></div>
-    <div><dt>India · IST</dt><dd class="clock"><i id="iI">○</i><span id="tI">--:--</span></dd></div>
-    <div><dt>Europe · CET</dt><dd class="clock"><i id="iE">○</i><span id="tE">--:--</span></dd></div>
-  </dl>
   <div class="ask-keys" role="group" aria-label="What would you like to talk about?">
     <button class="ask-k" data-ask="commissions" aria-expanded="false" aria-controls="ask"><i></i>Commissions</button>
     <button class="ask-k" data-ask="prints" aria-expanded="false" aria-controls="ask"><i></i>Prints</button>
@@ -212,13 +228,14 @@
       </div>
       <p class="lbl" style="margin:0 0 10px">Field notes · tap a card to turn it over</p>
       <div class="notes" id="notes">
-        <button class="nc" aria-pressed="false"><span class="k">०१</span><span class="f">On the road<small>Where</small></span><span class="b">Has photographed in Greece, Mumbai and across Europe. The archive grows faster than the edit.</span></button>
-        <button class="nc" aria-pressed="false"><span class="k">०२</span><span class="f">Philosophy<small>Why no faces</small></span><span class="b">The face is the least interesting part of a portrait. Light, smoke, a hand or a shadow usually says more.</span></button>
-        <button class="nc" aria-pressed="false"><span class="k">०३</span><span class="f">After dark<small>Sound</small></span><span class="b">Plays hypnotic psytrance, downtempo and alternative techno as The Ring, and built a visualiser that turns a set into light in real time.</span></button>
-        <button class="nc" aria-pressed="false"><span class="k">०४</span><span class="f">Kit<small>What he carries</small></span><span class="b">Two Canon bodies, a 700D and an M3, both well past their launch dates and still in service.</span></button>
-        <button class="nc" aria-pressed="false"><span class="k">०५</span><span class="f">Confession<small>The archive</small></span><span class="b">920 frames in the final-edits folder, 128 of them exact duplicates. He is working on it.</span></button>
-        <button class="nc" aria-pressed="false"><span class="k">०६</span><span class="f">Time<small>How he sorts</small></span><span class="b">His plates are filed by the hour their light belongs to. Turn the ring in chapter ०३ to walk through a day of it.</span></button>
+        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०१</span>On the road<small>Where</small></span><span class="face b"><span class="k">०१</span>Has photographed in Greece, Mumbai and across Europe. The archive grows faster than the edit.</span></span></button>
+        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०२</span>Philosophy<small>Why no faces</small></span><span class="face b"><span class="k">०२</span>The face is the least interesting part of a portrait. Light, smoke, a hand or a shadow usually says more.</span></span></button>
+        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०३</span>After dark<small>Sound</small></span><span class="face b"><span class="k">०३</span>Plays hypnotic psytrance, downtempo and alternative techno as The Ring, and built a visualiser that turns a set into light in real time.</span></span></button>
+        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०४</span>Kit<small>What he carries</small></span><span class="face b"><span class="k">०४</span>Two Canon bodies, a 700D and an M3, both well past their launch dates and still in service.</span></span></button>
+        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०५</span>Confession<small>The archive</small></span><span class="face b"><span class="k">०५</span>920 frames in the final-edits folder, 128 of them exact duplicates. He is working on it.</span></span></button>
+        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०६</span>Time<small>How he sorts</small></span><span class="face b"><span class="k">०६</span>His plates are filed by the hour their light belongs to. Turn the ring in chapter ०३ to walk through a day of it.</span></span></button>
       </div>
+      <button class="tog" id="deal" style="margin-top:14px;color:var(--bone)">Deal the cards again</button>
       <p class="lbl" style="margin:22px 0 0">Start a conversation · ask him about</p>
       <div class="askabout">
         <a href="mailto:gantisriharsh@gmail.com?subject=Why%20are%20the%20faces%20missing%3F">why the faces are missing</a>
@@ -242,12 +259,18 @@
 <dt><kbd>Esc</kbd></dt><dd>Close</dd>
 </dl><button id="keysX">Close</button></div></div>
 
+<div class="glass" id="glass" hidden role="dialog" aria-label="Photograph">
+  <div class="gsheen"></div>
+  <img class="gimg" id="gimg" alt="">
+  <div class="gbar"><button class="tog" id="gprev" aria-label="Previous photograph">◀</button><span class="gcap" id="gcap"></span><button class="btn" id="gadd" aria-pressed="false">+ Add to contact sheet</button><button class="tog" id="gnext" aria-label="Next photograph">▶</button><button class="tog" id="gx">Close</button></div>
+</div>
+
 <div class="loupe" id="loupe" hidden role="dialog" aria-label="Loupe">
   <span class="cap" id="lcap"></span>
   <img id="limg" alt="">
   <div class="lensx" id="lensx"></div>
   <div class="bar"><button class="mk" id="lmark" aria-pressed="false">Mark as select</button><button id="lprev">◀ Prev</button><button id="lnext">Next ▶</button><button id="lx">Close</button></div>
 </div>
-<script src="assets/js/site.js?v=9"></script>
+<script src="assets/js/site.js?v=10"></script>
 </body>
 </html>

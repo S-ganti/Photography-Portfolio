@@ -10,8 +10,8 @@ The portfolio site for Sriharsh Ganti's photography. It is a single static page 
 | ०२ | Withheld | The thesis reveals itself word by word. A torch moves across a wall of faceless portraits. A seven-blade iris opens onto a mosaic of sixteen frames that flows through four grids. |
 | ०३ | The Ring | A 24-hour dial in Devanagari, opening at the current hour in India. Each of eight parts of the day shows plates whose light belongs to it, large, with a palette pulled from each. |
 | ०४ | Afterimage | Paint with light using eight long-exposure frames as brushes; the brush only changes when you click. A film roll develops from negative each time it passes, and a light table of outtakes can be dragged in any direction. |
-| ०५ | Contact sheet | Frames open under a loupe. Grease-pencil selects become "Your edit" and open a print enquiry email with the frame numbers. |
-| ०६ | Archive | A masonry wall of 92 frames, filtered by ten themes: Street, Motion, Light, Sea, Built, Night, Silhouette, Unfaced, Colour and Abstract. |
+| ०५ | Contact sheet | Starts as an empty template with three steps. Visitors add frames from anywhere on the site; theme chips or light-table picks suggest more. Ends in a print enquiry email. |
+| ०६ | Archive | A paged explorer (12 per page, 6 on phones) with ten theme filters, shuffle, swipe and keys. |
 | ०७ | Contact | A stacked wordmark, live clocks for India and Europe, enquiry keys for commissions, prints and exhibitions, and an About section with field notes. |
 
 Press `?` on the site to see the keyboard shortcuts.
