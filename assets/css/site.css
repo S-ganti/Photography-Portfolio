@@ -548,3 +548,8 @@ a{color:inherit}
 .top .dev{grid-column:2}.top .ctl{grid-column:-2/-1;justify-self:end}
 @media(max-width:900px){.top .mark{font-size:26px}}
 @media(max-width:560px){.top .mark{font-size:22px}}
+.top .mark{font:800 clamp(26px,2.6vw,40px)/.9 var(--wide);font-stretch:68%;text-transform:uppercase;letter-spacing:-.01em;color:#fff}
+.top .mark span{font:400 1.02em 'Redacted Script',var(--serif);text-transform:none;color:var(--bone);margin-left:.12em;transition:color .3s}
+.top .mark:hover span,.top .mark:focus-visible span{font:400 .86em 'Monoton',var(--wide);text-transform:none;color:var(--ember);text-shadow:0 0 24px rgba(255,90,31,.35)}
+@media(max-width:900px){.top .mark{font-size:24px}}
+@media(max-width:560px){.top .mark{font-size:21px}}
