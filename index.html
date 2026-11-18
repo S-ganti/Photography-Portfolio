@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Photographs by Sriharsh Ganti. India and Europe.">
+<meta name="description" content="Photographs by Sriharsh Ganti. Every face withheld, by smoke, a hand, a blur or a shadow. India and Europe.">
+<meta property="og:title" content="Sriharsh Ganti · Photographs">
+<meta property="og:description" content="Every face here is withheld. What remains is the exposure.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://s-ganti.github.io/Photography-Portfolio/">
+<meta property="og:image" content="https://s-ganti.github.io/Photography-Portfolio/assets/img/715.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070708">
 <title>Sriharsh Ganti Photography</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +48,6 @@
 <section class="hero wrap nocur" id="c1" data-name="Light" data-cur="lamp">
   <img class="ghost" id="cg" alt="">
   <img class="lit" id="cl" alt="">
-  <div class="covers" id="covers" role="group" aria-label="Choose the cover photograph"><span class="lbl">Cover</span></div>
   <div class="fl"></div>
   <div class="lampdot" aria-hidden="true"></div>
   <p class="hint" id="hint">Move the light · click to flash</p>
@@ -57,7 +63,6 @@
 <section id="c2" data-name="Withheld">
   <div class="thesis wrap">
     <p id="thesis">Every face here is withheld, by smoke, a hand, a blur or a shadow. <span class="em">What remains is the exposure.</span></p>
-    <small class="lbl">Draft thesis · Sri to confirm</small>
   </div>
   <div class="withheld wrap nocur" id="wh" data-cur="torch">
     <div class="ch-head"><span class="dv">०२</span><h2>With<em>held</em></h2><span class="lbl">Carry the lamp across the wall</span></div>
@@ -126,10 +131,15 @@
     </div>
   </div>
   <div class="trip-sec wrap">
-    <div class="ch-head"><span class="dv">०४</span><h2>Lighting of <em>creation</em></h2><span class="lbl">Series title from Sri's folder</span></div>
+    <div class="ch-head"><span class="dv">०४</span><h2>Shutter <em>speed</em></h2><span class="lbl">Eight frames · one dial</span></div>
     <div class="trip-head">
-      <p style="margin:0;max-width:46ch;color:var(--mute)">Three trees, three exposures. Drag the slider to hold the shutter open longer.</p>
-      <label class="lbl" for="exp">Exposure length<input type="range" id="exp" min="0" max="100" value="40"></label>
+      <p style="margin:0;max-width:40ch;color:var(--mute)">Slide from a fast shutter to a slow one and watch the light drag across eight frames.</p>
+      <div class="ss">
+        <div class="ssread"><output id="ssv" for="exp">1/125</output><span class="lbl">sec</span></div>
+        <label for="exp" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Shutter speed</label>
+        <input type="range" id="exp" min="0" max="7" step="1" value="2" aria-valuetext="1/125 second">
+        <div class="ssticks" id="ssticks" aria-hidden="true"></div>
+      </div>
     </div>
     <div class="trip" id="trip"></div>
   </div>
@@ -162,8 +172,8 @@
     <div class="ln full"><span><em>Ganti.</em></span></div>
   </div>
   <dl class="fgrid">
-    <div><dt>Email</dt><dd><span class="need">[your email]</span></dd></div>
-    <div><dt>Instagram</dt><dd><span class="need">[your handle]</span></dd></div>
+    <div><dt>Email</dt><dd><a class="lnk" href="mailto:gantisriharsh@gmail.com">gantisriharsh@gmail.com</a></dd></div>
+    <div><dt>Instagram</dt><dd><a class="lnk" href="https://www.instagram.com/absurdly_yours/" target="_blank" rel="noopener">@Absurdly_yours ↗</a></dd></div>
     <div><dt>India · IST</dt><dd class="clock"><i id="iI">○</i><span id="tI">--:--</span></dd></div>
     <div><dt>Europe · CET</dt><dd class="clock"><i id="iE">○</i><span id="tE">--:--</span></dd></div>
   </dl>
@@ -173,7 +183,6 @@
 
 <div class="keys" id="keys" hidden role="dialog" aria-label="Keyboard shortcuts"><div class="kbox"><h3>Shortcuts</h3><dl>
 <dt><kbd>1</kbd>–<kbd>7</kbd></dt><dd>Jump to a chapter</dd>
-<dt><kbd>C</kbd></dt><dd>Next cover photograph</dd>
 <dt><kbd>F</kbd></dt><dd>Fire the flash</dd>
 <dt><kbd>S</kbd></dt><dd>Sound on or off</dd>
 <dt><kbd>P</kbd></dt><dd>Darkroom or print</dd>

@@ -183,9 +183,16 @@ a{color:inherit}
 .trip-head{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:end;margin-top:6vh;margin-bottom:22px}
 .trip-head label{display:grid;gap:10px;min-width:min(340px,100%)}
 .trip-head input{width:100%;accent-color:var(--ember)}
-.trip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media(max-width:700px){.trip{grid-template-columns:1fr}}
-.trip figure{margin:0;position:relative;aspect-ratio:2/3;overflow:hidden;background:#000}
+.trip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:800px){.trip{grid-template-columns:repeat(2,1fr)}}
+.trip figure{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;background:#000}
+.trip img{transition:transform .45s cubic-bezier(.2,.7,.2,1),opacity .45s,filter .45s}
+.ss{position:relative;min-width:min(420px,100%);display:grid;gap:10px}
+.ssread{display:flex;align-items:baseline;gap:10px}
+.ssread output{font:400 clamp(44px,5vw,72px)/1 var(--serif);font-variant-numeric:tabular-nums;color:var(--fg);min-width:3.2ch}
+.ss input{width:100%;accent-color:var(--ember);height:28px}
+.ssticks{display:flex;justify-content:space-between;font:500 9px var(--mono);color:var(--mute);letter-spacing:.04em;padding:0 2px}
+.ssticks span.on{color:var(--ember)}
 .trip img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:screen}
 .trip img:first-child{mix-blend-mode:normal}
 .trip figcaption{position:absolute;left:10px;bottom:10px;font:500 10px var(--mono);letter-spacing:.1em;color:var(--bone);background:rgba(0,0,0,.5);padding:3px 7px}
@@ -240,6 +247,7 @@ a{color:inherit}
 .fgrid dt{font:500 9px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ash);margin-bottom:6px}
 .fgrid dd{margin:0;font-size:13px}
 .need{color:var(--ember);border-bottom:1px dashed currentColor}
+.lnk{text-decoration:none;border-bottom:1px solid var(--ember);padding-bottom:1px;transition:color .2s}.lnk:hover{color:var(--ember)}
 .clock{display:flex;gap:10px;align-items:center;font-variant-numeric:tabular-nums}
 .clock i{font-style:normal;color:var(--ember)}
 .back{margin-top:8vh;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font:500 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
