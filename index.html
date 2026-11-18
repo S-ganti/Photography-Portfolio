@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@500;700&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=6">
+<link rel="stylesheet" href="assets/css/site.css?v=7">
 <link rel="preload" as="image" href="assets/img/715.jpg">
 </head>
 <body>
@@ -128,14 +128,14 @@
   </div>
   <div class="strip" id="strip">
     <div class="stick wrap">
-      <div class="sh"><h3>One roll, <em>developing</em></h3><span class="lbl">Frames develop as they cross the centre</span></div>
+      <div class="sh"><h3>One roll, <em>one day</em></h3><span class="lbl">Read left to right · each frame develops as it crosses the centre</span></div>
       <div class="film" id="film"></div>
     </div>
   </div>
   <div class="lt-sec">
     <div class="wrap">
       <div class="ch-head"><span class="dv">०४</span><h2>Light <em>table</em></h2><span class="lbl">Outtakes · drag in any direction</span></div>
-      <p class="intro">The frames that didn't make the edit, spread across a light table that never ends. Drag to move around, and tap a print to put it under the loupe.</p>
+      <p class="intro">The frames that didn't make the edit, spread across a light table that never ends. Drag to move around, tap a print to put it under the loupe, and mark the ones you would hang. Your picks re-cut the contact sheet below.</p>
     </div>
     <div class="lt" id="lt" data-cur="drag"><div class="lt-in" id="ltIn"></div><span class="lt-hint">Drag · tap a print</span></div>
   </div>
@@ -146,11 +146,12 @@
 <section class="sheet wrap" id="c5" data-name="Contact sheet">
   <div class="ch-head"><span class="dv">०५</span><h2>Contact <em>sheet</em></h2><span class="lbl">Mark your selects · ask Sri for prints</span></div>
   <div class="sel-bar"><span class="count">Your selects <b id="selN">०</b></span><button id="selClear">Wipe the grease pencil</button></div>
+  <div class="tune" id="tune" hidden></div>
   <div class="cs" id="cs"></div>
   <div class="tray" id="tray" hidden>
     <div><p class="lbl" style="margin:0 0 10px">Your edit</p><div class="tray-t" id="trayT"></div></div>
     <div class="tray-act"><a class="btn" id="mailSel" href="mailto:gantisriharsh@gmail.com">Ask about prints ↗</a><button class="btn ghost" id="copySel">Copy frame list</button></div>
-    <p class="lbl note" id="trayNote">Opens your email to Sri with these frames listed.</p>
+    <p class="lbl note" id="trayNote">Picks from the contact sheet and the light table. Opens your email to Sri with the frames listed.</p>
   </div>
 </section>
 <!-- ०६ ARCHIVE -->
@@ -178,6 +179,50 @@
     <div><dt>India · IST</dt><dd class="clock"><i id="iI">○</i><span id="tI">--:--</span></dd></div>
     <div><dt>Europe · CET</dt><dd class="clock"><i id="iE">○</i><span id="tE">--:--</span></dd></div>
   </dl>
+  <div class="ask-keys" role="group" aria-label="What would you like to talk about?">
+    <button class="ask-k" data-ask="commissions" aria-expanded="false" aria-controls="ask"><i></i>Commissions</button>
+    <button class="ask-k" data-ask="prints" aria-expanded="false" aria-controls="ask"><i></i>Prints</button>
+    <button class="ask-k" data-ask="exhibitions" aria-expanded="false" aria-controls="ask"><i></i>Exhibitions</button>
+  </div>
+  <div class="ask" id="ask" hidden>
+    <div class="ask-head"><span class="lbl" id="askT">Enquiry</span><button class="tog" id="askX" style="color:var(--bone)">Close</button></div>
+    <div class="ask-frames">
+      <div class="fr"><span class="lbl"><span class="dv">०१</span>&nbsp; <span id="q1l"></span></span><div class="opt" id="q1" role="group"></div></div>
+      <div class="fr"><span class="lbl"><span class="dv">०२</span>&nbsp; <span id="q2l"></span></span><div class="opt" id="q2" role="group"></div><div id="askSel"></div></div>
+      <div class="fr"><label class="lbl" for="askM"><span class="dv">०३</span>&nbsp; A few words</label><textarea id="askM" placeholder="Dates, places, ideas, anything useful"></textarea><button class="btn" id="askGo">Write the email ↗</button><span class="lbl" style="margin:0">Opens your email app, addressed to Sri</span></div>
+    </div>
+  </div>
+
+  <section class="about" id="about" aria-label="About Sri">
+    <figure class="portrait" id="portrait"><img id="sriImg" alt="Portrait of Sriharsh Ganti in yellow-tinted glasses against a yellow wall"><figcaption><span>The only face on this site</span><b>Hover for colour</b></figcaption></figure>
+    <div>
+      <h3>About <em>Sri</em></h3>
+      <p class="bio">Sriharsh Ganti, Sri to most people, is a photographer based in Bangalore who works between India and Europe. He photographs people as carriers of light and usually leaves their faces out of it. Off camera he plays records and builds things that turn sound into light.</p>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/sriharshganti/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/S-ganti" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.instagram.com/absurdly_yours/" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="mailto:gantisriharsh@gmail.com">Email</a>
+      </div>
+      <p class="lbl" style="margin:0 0 10px">Field notes · tap a card to turn it over</p>
+      <div class="notes" id="notes">
+        <button class="nc" aria-pressed="false"><span class="k">०१</span><span class="f">On the road<small>Where</small></span><span class="b">Has photographed in Greece, Mumbai and across Europe. The archive grows faster than the edit.</span></button>
+        <button class="nc" aria-pressed="false"><span class="k">०२</span><span class="f">Philosophy<small>Why no faces</small></span><span class="b">The face is the least interesting part of a portrait. Light, smoke, a hand or a shadow usually says more.</span></button>
+        <button class="nc" aria-pressed="false"><span class="k">०३</span><span class="f">After dark<small>Sound</small></span><span class="b">Plays hypnotic psytrance, downtempo and alternative techno as The Ring, and built a visualiser that turns a set into light in real time.</span></button>
+        <button class="nc" aria-pressed="false"><span class="k">०४</span><span class="f">Kit<small>What he carries</small></span><span class="b">Two Canon bodies, a 700D and an M3, both well past their launch dates and still in service.</span></button>
+        <button class="nc" aria-pressed="false"><span class="k">०५</span><span class="f">Confession<small>The archive</small></span><span class="b">920 frames in the final-edits folder, 128 of them exact duplicates. He is working on it.</span></button>
+        <button class="nc" aria-pressed="false"><span class="k">०६</span><span class="f">Time<small>How he sorts</small></span><span class="b">His plates are filed by the hour their light belongs to. Turn the ring in chapter ०३ to walk through a day of it.</span></button>
+      </div>
+      <p class="lbl" style="margin:22px 0 0">Start a conversation · ask him about</p>
+      <div class="askabout">
+        <a href="mailto:gantisriharsh@gmail.com?subject=Why%20are%20the%20faces%20missing%3F">why the faces are missing</a>
+        <a href="mailto:gantisriharsh@gmail.com?subject=The%20photo%20behind%20the%20smoke">the photo behind the smoke</a>
+        <a href="mailto:gantisriharsh@gmail.com?subject=What%20would%20you%20play%20at%20golden%20hour%3F">what he'd play at golden hour</a>
+        <a href="mailto:gantisriharsh@gmail.com?subject=Where%20should%20you%20shoot%20next%3F">where he should shoot next</a>
+      </div>
+    </div>
+  </section>
+
   <div class="back"><span>Based in Bangalore · working across India and Europe</span><button id="toTop">Back to the dark ↑</button></div>
   <p class="colophon">Set in Instrument Serif, Archivo, JetBrains Mono and Noto Sans Devanagari · press ? for shortcuts</p>
 </footer>
@@ -197,6 +242,6 @@
   <div class="lensx" id="lensx"></div>
   <div class="bar"><button class="mk" id="lmark" aria-pressed="false">Mark as select</button><button id="lprev">◀ Prev</button><button id="lnext">Next ▶</button><button id="lx">Close</button></div>
 </div>
-<script src="assets/js/site.js?v=6"></script>
+<script src="assets/js/site.js?v=7"></script>
 </body>
 </html>

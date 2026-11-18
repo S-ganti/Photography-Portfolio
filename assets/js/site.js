@@ -9,18 +9,22 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON
 
 /* ---------- content ---------- */
 const TOD=[{h:0,name:'Late night',imgs:[809,876],c:'#3c5fd6',arc:'#22345f'},{h:3,name:'First light',imgs:[659,424],c:'#c9b8e0',arc:'#8e86a8'},{h:6,name:'Morning',imgs:[232,664],c:'#f2d9a0',arc:'#e7cf96'},{h:9,name:'High sun',imgs:[891,200],c:'#fff4d6',arc:'#f4efe2'},{h:12,name:'Afternoon',imgs:[874,198],c:'#efcf7c',arc:'#e9c46a'},{h:15,name:'Golden hour',imgs:[73,408],c:'#ff8a3d',arc:'#ff7a33'},{h:18,name:'Dusk',imgs:[216,418],c:'#e0552b',arc:'#c4452a'},{h:21,name:'Night',imgs:[865,641],c:'#ff9a3c',arc:'#5a3a1c'}];
-const COVERS=[715,167,186,178,703,914,162,165];
+const COVERS=[715,167,186,178,703,914,162,165,720,666,675];
 const MOS=[914,252,254,181,276,246,890,893,665,392,478,670,814,842,847,255];
-const BRUSH=[217,524,526,245,474,471,172,470];
-const TABLE=[4,5,63,84,90,131,146,175,187,213,223,234,235,242,260,274,285,288,292,313,319,333,346,406,417,430,454,466,476,494,504,515,517,527,544,589,626,645,660,680,684,704,729,772,779,780,792,844,850,884,894,906,915];
-const ROLL=[20,43,77,141,300,332,452,513,791,849,794,311];
+const BRUSH=[217,474,614,621,172,120,83,684];
+const TT={4:['street','light'],5:['night'],84:['motion'],90:['night','light'],131:['sea'],146:['built','colour'],175:['motion','street'],187:['silhouette','light'],213:['motion'],223:['motion','abstract'],234:['silhouette'],235:['built'],242:['night','silhouette'],260:['night'],274:['street'],285:['abstract','light'],288:['built','sea'],292:['night','abstract'],313:['night','motion','colour'],319:['built','silhouette'],333:['sea','motion'],346:['built','colour'],406:['built'],417:['built','colour'],430:['motion','abstract'],454:['motion'],466:['sea','colour'],476:['light','abstract'],494:['motion','sea'],504:['silhouette','light'],515:['silhouette','light'],517:['built','light'],527:['abstract','colour'],544:['motion','street'],589:['built'],626:['abstract','built'],645:['motion','night'],660:['motion','abstract'],680:['night','street'],704:['built','night'],729:['light','street'],772:['motion'],779:['motion','colour'],780:['sea','silhouette'],792:['sea'],844:['street','night'],850:['motion'],884:['street'],894:['motion','abstract'],906:['motion','sea'],915:['silhouette']};
+const TABLE=Object.keys(TT).map(Number);
+const ROLL=[20,63,141,332,43,452,488,794,791,300,849,311],VERBS=['leave','wait','cross','land','lean','lift','swim','break','watch','fade','rush','return'];
 const SHEET=[482,74,82,194,244,15,10,873,215,266,535,534,193,584,669];
-const ARCH={street:[2,253,401,610,668,900,393,500,813,887,889,32,781],motion:[22,251,658,661,771,846,848,905,908,183],light:[162,163,719,640,477,479,702,777,919,920],sea:[480,425,426,453,491,797,139],built:[320,348,351,271,301,312]};
-const MODE={street:'Street',motion:'Motion',light:'Light',sea:'Sea',built:'Built'};
+const ST={482:['street'],74:['silhouette','colour'],82:['street'],194:['street'],244:['night','colour'],15:['light','colour'],10:['light','colour'],873:['built'],215:['street'],266:['street'],535:['colour','abstract'],534:['night','abstract'],193:['light','colour'],584:['colour','motion'],669:['silhouette']};
+const ARCH={street:[2,253,401,610,668,900,393,500,813,887,889,32,781],motion:[22,251,658,661,771,846,848,905,908,183],light:[162,163,719,640,477,479,702,777,919,920],sea:[480,425,426,453,491,797,139,485],built:[320,348,351,271,301,312],night:[872,810,843,853],silhouette:[667,646,519,529],colour:[524,526,470,471,473,245],abstract:[168,495,904]};
+const MODE={street:'Street',motion:'Motion',light:'Light',sea:'Sea',built:'Built',night:'Night',silhouette:'Silhouette',colour:'Colour',abstract:'Abstract'};
 const AL=(()=>{const ks=Object.keys(ARCH),out=[],mx=Math.max(...ks.map(k=>ARCH[k].length));for(let i=0;i<mx;i++)ks.forEach(k=>{if(ARCH[k][i]!==undefined)out.push({n:ARCH[k][i],k})});return out})();
-$('#film').innerHTML=ROLL.map((n,i)=>`<figure data-cur="develop"><figcaption><span class="dv">${DV(i+1)}</span><span>▸ ${n}</span></figcaption><img data-n="${n}" alt="Frame ${n}"></figure>`).join('');
+$('#film').innerHTML=ROLL.map((n,i)=>`<figure data-cur="develop"><figcaption><span class="dv">${DV(i+1)}</span><span class="vb">${VERBS[i]}</span><span>▸ ${n}</span></figcaption><img data-n="${n}" alt="Frame ${n}, ${VERBS[i]}"></figure>`).join('');
 $('#mos').innerHTML=MOS.map(n=>`<div class="tl"><img data-n="${n}" alt="Frame ${n}"><span>#${n}</span></div>`).join('');
-$('#cs').innerHTML=SHEET.map((n,i)=>`<button class="cf" data-i="${i}" data-cur="loupe" aria-label="Open frame ${n} under the loupe"><div class="ph"><img data-n="${n}" alt=""></div><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="52" rx="${45+(i%3)}" ry="${44-(i%2)*3}" transform="rotate(${i%2?-4:3} 50 50)"/></svg><span class="x" aria-hidden="true">✕</span><div class="lab"><span class="dv">${DV(i+1)}</span><span>#${n}</span></div></button>`).join('');
+let SHEETN=SHEET.slice(),tuned=null;
+function renderSheet(anim){const cs=$('#cs');cs.classList.remove('recut');cs.innerHTML=SHEETN.map((n,i)=>`<button class="cf" data-i="${i}" data-n2="${n}" data-cur="loupe" aria-label="Open frame ${n} under the loupe"><div class="ph"><img src="${I[n]}" alt=""></div><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="52" rx="${45+(i%3)}" ry="${44-(i%2)*3}" transform="rotate(${i%2?-4:3} 50 50)"/></svg><span class="x" aria-hidden="true">✕</span><div class="lab"><span class="dv">${DV(i+1)}</span><span>#${n}</span></div></button>`).join('');if(anim){void cs.offsetWidth;cs.classList.add('recut')}}
+renderSheet(false);
 const mq='<span>Suspended <em>Reverie</em></span><span class="dv">●</span><span>Un<em>faced</em></span><span class="dv">●</span><span>After<em>image</em></span><span class="dv">●</span>';
 $('#marq').innerHTML=mq+mq+mq+mq;
 $('#arch').innerHTML=AL.map((o,i)=>`<button class="af" data-k="${o.k}" data-n2="${o.n}" data-cur="loupe" aria-label="Open frame ${o.n}"><img data-n="${o.n}" alt="" loading="lazy" width="400" height="300"><span class="cap"><span>${MODE[o.k]}</span><span>#${o.n}</span></span></button>`).join('');
@@ -168,11 +172,11 @@ const lt=$('#lt'),ltIn=$('#ltIn');let BW=1,BH=1,lox=0,loy=0,lvx=0,lvy=0,ldrag=nu
 function rnd(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function buildLT(){const s=innerWidth<700?.6:1;if(s===ltScale)return;ltScale=s;const cw2=290*s,ch2=270*s,cols=9,rows=Math.ceil(TABLE.length/cols);BW=cols*cw2;BH=rows*ch2;let html='';
   TABLE.forEach((n,i)=>{const r=rnd(i*7+3),c=i%cols,rw=Math.floor(i/cols),x=c*cw2+r()*cw2*.3,y=rw*ch2+r()*ch2*.25,w=(140+r()*90)*s,rot=(r()-.5)*11;
-    html+=`<button class="pr" data-t="${i}" style="left:${x.toFixed(0)}px;top:${y.toFixed(0)}px;--w:${w.toFixed(0)}px;--r:${rot.toFixed(1)}deg" aria-label="Open outtake ${n}" tabindex="${i<12?0:-1}"><img data-src="${n}" alt="" draggable="false"><span>#${n}</span></button>`});
-  ltIn.innerHTML=[0,1,2,3].map(k=>`<div class="blk"${k?' aria-hidden="true"':''}>${html}</div>`).join('');$$('#ltIn img').forEach(im=>im.src=I[im.dataset.src])}
+    html+=`<button class="pr" data-t="${i}" data-n2="${n}" style="left:${x.toFixed(0)}px;top:${y.toFixed(0)}px;--w:${w.toFixed(0)}px;--r:${rot.toFixed(1)}deg" aria-label="Open outtake ${n}" tabindex="${i<12?0:-1}"><img data-src="${n}" alt="" draggable="false"><span>#${n}</span></button>`});
+  ltIn.innerHTML=[0,1,2,3].map(k=>`<div class="blk"${k?' aria-hidden="true"':''}>${html}</div>`).join('');$$('#ltIn img').forEach(im=>im.src=I[im.dataset.src]);paintSel()}
 lt.addEventListener('pointerdown',e=>{if(e.button>0)return;ldrag={x:e.clientX,y:e.clientY,ox:lox,oy:loy,mv:0,lx:e.clientX,ly:e.clientY,touch:e.pointerType==='touch'};lvx=lvy=0;if(!ldrag.touch)lt.setPointerCapture(e.pointerId)});
 lt.addEventListener('pointermove',e=>{if(!ldrag)return;const dx=e.clientX-ldrag.x,dy=ldrag.touch?0:e.clientY-ldrag.y;lox=ldrag.ox+dx;loy=ldrag.oy+dy;ldrag.mv=Math.max(ldrag.mv,Math.hypot(dx,dy));lvx=e.clientX-ldrag.lx;lvy=ldrag.touch?0:e.clientY-ldrag.ly;ldrag.lx=e.clientX;ldrag.ly=e.clientY});
-const ltUp=e=>{if(!ldrag)return;const d=ldrag;ldrag=null;if(d.mv<6){const p=document.elementsFromPoint(e.clientX,e.clientY).find(el=>el.classList&&el.classList.contains('pr'));if(p){lastFocus=p;LL=TABLE;markable=false;openL(+p.dataset.t);shutter();$('#lx').focus()}}};
+const ltUp=e=>{if(!ldrag)return;const d=ldrag;ldrag=null;if(d.mv<6){const p=document.elementsFromPoint(e.clientX,e.clientY).find(el=>el.classList&&el.classList.contains('pr'));if(p){lastFocus=p;LL=TABLE;markable=true;openL(+p.dataset.t);shutter();$('#lx').focus()}}};
 lt.addEventListener('pointerup',ltUp);lt.addEventListener('pointercancel',()=>{ldrag=null});
 lt.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const p=e.target.closest('.pr');if(p){e.preventDefault();lastFocus=p;LL=TABLE;markable=false;openL(+p.dataset.t)}}});
 lt.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();lox-=e.deltaX}},{passive:false});
@@ -181,19 +185,19 @@ function ltFrame(){const r=lt.getBoundingClientRect();if(r.bottom<0||r.top>inner
   const x=((lox%BW)+BW)%BW-BW,y=((loy%BH)+BH)%BH-BH;const b=ltIn.children;if(b.length===4){b[0].style.transform=`translate(${x}px,${y}px)`;b[1].style.transform=`translate(${x+BW}px,${y}px)`;b[2].style.transform=`translate(${x}px,${y+BH}px)`;b[3].style.transform=`translate(${x+BW}px,${y+BH}px)`}}
 
 /* ---------- ०५ contact sheet + loupe ---------- */
-let sel=new Set(store.get('sg-sel',[]));
-function paintSel(){$$('.cf').forEach(b=>b.classList.toggle('sel',sel.has(+b.dataset.i)));$('#selN').textContent=DV1(sel.size);store.set('sg-sel',[...sel]);
-  const list=[...sel].sort((a,b)=>a-b).map(i=>SHEET[i]);$('#tray').hidden=!list.length;
+let sel=new Set(store.get('sg-sel2',[]));
+function paintSel(){$$('.cf,.pr').forEach(b=>b.classList.toggle('sel',sel.has(+b.dataset.n2)));$('#selN').textContent=DV1(sel.size);store.set('sg-sel2',[...sel]);
+  const list=[...sel];$('#tray').hidden=!list.length;
   $('#trayT').innerHTML=list.map(n=>`<img src="${I[n]}" alt="Frame ${n}">`).join('');
-  const body='Hi Sri,\n\nI marked these frames on your contact sheet and would like to ask about prints:\n'+list.map(n=>'  #'+n).join('\n')+'\n\nSize:\nQuantity:\n\nThanks,\n';
+  const body='Hi Sri,\n\nI marked these frames on your site and would like to ask about prints:\n'+list.map(n=>'  #'+n).join('\n')+'\n\nSize:\nQuantity:\n\nThanks,\n';
   $('#mailSel').href='mailto:gantisriharsh@gmail.com?subject='+encodeURIComponent('Print enquiry, '+list.length+' frame'+(list.length>1?'s':''))+'&body='+encodeURIComponent(body)}
 paintSel();
 $('#selClear').onclick=()=>{sel.clear();paintSel()};
-$('#copySel').onclick=()=>{const s=[...sel].sort((a,b)=>a-b).map(i=>'#'+SHEET[i]).join(', '),ok=()=>{$('#trayNote').textContent='Copied: '+s};try{navigator.clipboard.writeText(s).then(ok,()=>{$('#trayNote').textContent=s})}catch(_){$('#trayNote').textContent=s}};
-const lp=$('#loupe'),limg=$('#limg'),lensx=$('#lensx');let li=0,lastFocus=null,LL=SHEET,markable=true;
-function openL(i){li=(i+LL.length)%LL.length;const n=LL[li];$('#lmark').hidden=!markable;limg.src=I[n];limg.alt='Frame '+n;lensx.style.backgroundImage=`url(${I[n]})`;
-  $('#lcap').textContent=`${markable?'Plate':LL===TABLE?'Outtake':'Archive'} ${DV(li+1)} / ${DV(LL.length)} · #${n}${FINE?' · move to inspect':''}`;$('#lmark').setAttribute('aria-pressed',sel.has(li));$('#lmark').textContent=sel.has(li)?'Selected ✓':'Mark as select';lp.hidden=false}
-$('#cs').addEventListener('click',e=>{const b=e.target.closest('.cf');if(!b)return;lastFocus=b;LL=SHEET;markable=true;openL(+b.dataset.i);shutter();$('#lx').focus()});
+$('#copySel').onclick=()=>{const s=[...sel].map(n=>'#'+n).join(', '),ok=()=>{$('#trayNote').textContent='Copied: '+s};try{navigator.clipboard.writeText(s).then(ok,()=>{$('#trayNote').textContent=s})}catch(_){$('#trayNote').textContent=s}};
+const lp=$('#loupe'),limg=$('#limg'),lensx=$('#lensx');let li=0,lastFocus=null,LL=SHEETN,markable=true;
+function openL(i){li=(i+LL.length)%LL.length;const n=LL[li];$('#lmark').hidden=false;limg.src=I[n];limg.alt='Frame '+n;lensx.style.backgroundImage=`url(${I[n]})`;
+  $('#lcap').textContent=`${LL===SHEETN?'Plate':LL===TABLE?'Outtake':'Archive'} ${DV(li+1)} / ${DV(LL.length)} · #${n}${FINE?' · move to inspect':''}`;$('#lmark').setAttribute('aria-pressed',sel.has(n));$('#lmark').textContent=sel.has(n)?'Selected ✓':'Mark as select';lp.hidden=false}
+$('#cs').addEventListener('click',e=>{const b=e.target.closest('.cf');if(!b)return;lastFocus=b;LL=SHEETN;markable=true;openL(+b.dataset.i);shutter();$('#lx').focus()});
 $('#arch').addEventListener('click',e=>{const b=e.target.closest('.af');if(!b)return;lastFocus=b;const vis=$$('#arch .af').filter(x=>!x.hidden);LL=vis.map(x=>+x.dataset.n2);markable=false;openL(vis.indexOf(b));shutter();$('#lx').focus()});
 /* archive filter */
 let filt='all';
@@ -204,7 +208,36 @@ $('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if
   $$('#arch .af').forEach((a,i)=>{const show=filt==='all'||a.dataset.k===filt;a.hidden=!show;if(show){a.style.animation='none';void a.offsetWidth;a.style.animation=''}})});
 const closeL=()=>{lp.hidden=true;lensx.style.display='none';lastFocus&&lastFocus.focus()};
 $('#lx').onclick=closeL;$('#lprev').onclick=()=>openL(li-1);$('#lnext').onclick=()=>openL(li+1);
-$('#lmark').onclick=()=>{sel.has(li)?sel.delete(li):sel.add(li);paintSel();openL(li)};
+$('#lmark').onclick=()=>{const n=LL[li];sel.has(n)?sel.delete(n):sel.add(n);paintSel();tick();if(LL===TABLE)tuneSheet();openL(li)};
+$('#selClear').addEventListener('click',()=>tuneSheet());
+/* theme-tuned contact sheet */
+const POOL={};Object.entries(ARCH).forEach(([k,v])=>v.forEach(n=>(POOL[n]=POOL[n]||[]).push(k)));Object.entries(ST).forEach(([n,v])=>POOL[n]=[...new Set([...(POOL[n]||[]),...v])]);
+function tuneSheet(){const picks=[...sel].filter(n=>TT[n]);
+  if(!picks.length){if(tuned){tuned=null;SHEETN.splice(0,SHEETN.length,...SHEET);renderSheet(true);paintSel();$('#tune').hidden=true}return}
+  const cnt={};picks.forEach(n=>TT[n].forEach(k=>cnt[k]=(cnt[k]||0)+1));const top=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0]);const key=top.join('+');if(key===tuned)return;tuned=key;
+  const sc=n=>POOL[n].reduce((s,k)=>s+(k===top[0]?2:k===top[1]?1:0),0),r=rnd(key.length*31+picks.length);
+  const ranked=Object.keys(POOL).map(Number).map(n=>({n,s:sc(n),j:r()})).filter(o=>o.s>0).sort((a,b)=>b.s-a.s||a.j-b.j).map(o=>o.n);
+  const list=[...ranked,...SHEET.filter(n=>!ranked.includes(n))].slice(0,15);SHEETN.splice(0,SHEETN.length,...list);renderSheet(true);paintSel();
+  $('#tune').hidden=false;$('#tune').innerHTML=`Re-cut for your light-table picks · <b>${top.map(k=>MODE[k]).join(' + ')}</b><button id="tuneX">Show the original sheet</button>`;
+  $('#tuneX').onclick=()=>{tuned='original';SHEETN.splice(0,SHEETN.length,...SHEET);renderSheet(true);paintSel();$('#tune').hidden=true}}
+tuneSheet();
+/* enquiry sheet */
+const ASK={commissions:{t:'Commissions',l1:'What is it for?',o1:['Portrait','Editorial','Brand or product','Music or event','Something else'],l2:'When?',o2:['This month','In a few months','Just exploring']},
+  prints:{t:'Prints',l1:'Size you have in mind',o1:['A4','A3','A2','Not sure yet'],l2:'How many?',o2:['One','Two or three','More'],sel:true},
+  exhibitions:{t:'Exhibitions',l1:'What kind?',o1:['Group show','Solo show','Open call','Talk or panel'],l2:'When?',o2:['This year','Next year','Just exploring']}};
+let askK=null,a1='',a2='';
+function closeAsk(){askK=null;$('#ask').hidden=true;$$('.ask-k').forEach(b=>b.setAttribute('aria-expanded','false'))}
+function openAsk(k){if(askK===k){closeAsk();return}askK=k;a1=a2='';const c=ASK[k];$('#askT').textContent='Enquiry · '+c.t;$('#q1l').textContent=c.l1;$('#q2l').textContent=c.l2;
+  $('#q1').innerHTML=c.o1.map(o=>`<button aria-pressed="false">${o}</button>`).join('');$('#q2').innerHTML=c.o2.map(o=>`<button aria-pressed="false">${o}</button>`).join('');
+  $('#askSel').innerHTML=c.sel?(sel.size?`<p class="lbl" style="margin:6px 0 8px">Your selects</p><div class="tray-t">${[...sel].map(n=>`<img src="${I[n]}" alt="Frame ${n}">`).join('')}</div>`:'<p class="lbl" style="margin:6px 0 0">Tip: mark frames on the contact sheet or the light table and they appear here</p>'):'';
+  $$('.ask-k').forEach(b=>b.setAttribute('aria-expanded',b.dataset.ask===k));$('#ask').hidden=false;tick();shutter()}
+$$('.ask-k').forEach(b=>b.onclick=()=>openAsk(b.dataset.ask));$('#askX').onclick=closeAsk;
+['q1','q2'].forEach(id=>$('#'+id).addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('#'+id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(id==='q1')a1=b.textContent;else a2=b.textContent;tick()}));
+$('#askGo').onclick=()=>{if(!askK)return;const c=ASK[askK];const body='Hi Sri,\n\n'+c.l1+': '+(a1||'-')+'\n'+c.l2+': '+(a2||'-')+'\n'+(c.sel&&sel.size?'Frames: '+[...sel].map(n=>'#'+n).join(', ')+'\n':'')+'\n'+($('#askM').value||'')+'\n\nThanks,\n';
+  const a=document.createElement('a');a.href='mailto:gantisriharsh@gmail.com?subject='+encodeURIComponent(c.t+' enquiry')+'&body='+encodeURIComponent(body);document.body.appendChild(a);a.click();a.remove();$('#askGo').textContent='Opening your email…';setTimeout(()=>$('#askGo').textContent='Write the email ↗',2200)};
+/* about */
+$('#sriImg').src=I['sri'];$('#portrait').addEventListener('click',()=>$('#portrait').classList.toggle('on'));
+$('#notes').addEventListener('click',e=>{const b=e.target.closest('.nc');if(!b)return;b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');tick()});
 addEventListener('keydown',e=>{if(lp.hidden)return;if(e.key==='Escape')closeL();if(e.key==='ArrowRight')openL(li+1);if(e.key==='ArrowLeft')openL(li-1)});
 lp.addEventListener('pointermove',e=>{const r=limg.getBoundingClientRect(),inside=e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom;
   if(!inside||e.pointerType!=='mouse'){lensx.style.display='none';return}const z=2.6;lensx.style.display='block';lensx.style.left=e.clientX-105+'px';lensx.style.top=e.clientY-105+'px';

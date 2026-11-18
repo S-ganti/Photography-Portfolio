@@ -11,8 +11,8 @@ The portfolio site for Sriharsh Ganti's photography. It is a single static page 
 | ०३ | The Ring | A 24-hour dial in Devanagari, opening at the current hour in India. Each of eight parts of the day shows plates whose light belongs to it, large, with a palette pulled from each. |
 | ०४ | Afterimage | Paint with light using eight long-exposure frames as brushes; the brush only changes when you click. A film roll develops from negative each time it passes, and a light table of outtakes can be dragged in any direction. |
 | ०५ | Contact sheet | Frames open under a loupe. Grease-pencil selects become "Your edit" and open a print enquiry email with the frame numbers. |
-| ०६ | Archive | A masonry wall of 46 frames that can be filtered by Street, Motion, Light, Sea or Built. |
-| ०७ | Contact | A stacked wordmark, with live clocks for India and Europe. |
+| ०६ | Archive | A masonry wall of 64 frames, filtered by nine themes: Street, Motion, Light, Sea, Built, Night, Silhouette, Colour and Abstract. |
+| ०७ | Contact | A stacked wordmark, live clocks for India and Europe, enquiry keys for commissions, prints and exhibitions, and an About section with field notes. |
 
 Press `?` on the site to see the keyboard shortcuts.
 
