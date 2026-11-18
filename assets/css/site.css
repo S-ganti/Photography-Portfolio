@@ -2,7 +2,7 @@
    chapters that are "in the dark" stay ink; paper chapters flip with the Print toggle. One accent: ember (the lamp, the ring, the selects). */
 :root{
   --ink:#070708; --ink2:#111013; --bone:#ece6d9; --ash:#8a847a; --line:rgba(236,230,217,.14);
-  --ember:#ff5a1f; --hi:#f7b733; --grease:#e0322b;
+  --ember:#ff5a1f; --hi:#ff5a1f; --grease:#e0322b;
   --bg:var(--ink); --bg2:var(--ink2); --fg:var(--bone); --mute:var(--ash); --rule:var(--line);
   --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
   --wide:'Archivo','Arial Narrow','Helvetica Neue',Arial,sans-serif;
@@ -306,7 +306,7 @@ a{color:inherit}
 .mos .tl{will-change:left,top,width,height}
 .iris .frame{background:var(--ink)}
 .mos{position:absolute;inset:0}
-.mos .tl{position:absolute;overflow:hidden;box-shadow:0 0 0 1px var(--ink)}
+.mos .tl{position:absolute;overflow:hidden}
 .mos .tl img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);transform:scale(1.04)}
 .mos .tl span{position:absolute;left:8px;bottom:6px;font:500 9px var(--mono);color:var(--bone);letter-spacing:.12em;background:rgba(0,0,0,.5);padding:2px 6px}
 /* time-of-day dial */
@@ -421,7 +421,7 @@ a{color:inherit}
 .askabout a:hover{border-color:var(--ember);color:var(--ember)}
 
 /* ===== v9 ===== */
-.chero{display:grid;grid-template-columns:auto minmax(0,1fr);margin-top:6vh;background:linear-gradient(180deg,#b50301 0%,#cd2001 50%,#b42c01 100%)}
+.chero{--hi:#f7b733;display:grid;grid-template-columns:auto minmax(0,1fr);margin-top:6vh}
 .chero-img{margin:0;height:min(84svh,860px);aspect-ratio:1718/2576}
 .chero-img img{width:100%;height:100%;object-fit:cover;display:block}
 .chero-red{display:flex;align-items:flex-end;padding:3vw 3vw 4vw 0;min-width:0;overflow:hidden}
@@ -513,3 +513,24 @@ a{color:inherit}
 .arch,.sheet{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 .mos{contain:strict}.mos .tl{contain:paint}
 @media (prefers-reduced-motion:reduce){.notes .nc{opacity:1}.notes.dealt .nc{animation:none}#crRib{animation:none}.axgrid .af{animation:none}}
+
+/* ===== v11 ===== */
+/* Monoton across the section words */
+.ch-head h2 em.fx-held{transition:color .4s}
+.ch-head h2 em.fx-held.lit,.ch-head h2:hover em.fx-held{font:400 .82em 'Monoton',var(--wide);color:var(--ember);text-shadow:0 0 30px rgba(255,90,31,.35)}
+.ch-head h2 em.fx-ring,.ch-head h2 em.fx-table{font:400 .82em 'Monoton',var(--wide);color:var(--ember);text-transform:none}
+.ai-hero h2 em.fx-image{font:400 .62em 'Monoton',var(--wide);color:var(--ember);text-transform:none;letter-spacing:0}
+.strip h3 em.fx-day{font:400 .9em 'Monoton',var(--wide);color:var(--ember);text-transform:none;letter-spacing:0}
+.foot .ch-head h2 .fx-con,.foot .ch-head h2 .fx-tact{font:400 .82em 'Monoton',var(--wide);text-transform:none}
+.foot .ch-head h2 .fx-con{color:#fff}.foot .ch-head h2 .fx-tact{color:var(--ember)}
+:root[data-mode="print"] .ch-head h2 em.fx-table{color:var(--ember)}
+/* mosaic tiles: orange double line, Monoton-style, moving with each tile */
+.mos .tl::after{content:"";position:absolute;inset:0;border:2px solid var(--ember);box-shadow:inset 0 0 0 3px var(--ink),inset 0 0 0 5px var(--ember);pointer-events:none}
+/* contact: red stops with the photo */
+.chero-red{background:linear-gradient(180deg,#b50301 0%,#cd2001 50%,#b42c01 100%)}
+@media(min-width:761px){.chero{grid-template-rows:min(84svh,860px)}.chero-red{overflow:hidden;gap:18px}}
+.chero .stack .ln:nth-child(1){height:.3em}.chero .stack .ln:nth-child(2){height:.55em}
+/* deck */
+.dealrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.notes{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media(max-width:700px){.notes{grid-template-columns:1fr!important}}

@@ -16,15 +16,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@500;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&text=open%20up&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&text=Ring&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tilt+Prism&text=image&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ballet&text=one%20day&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monoton&text=%20CRabcdeghilmnoptuy&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&text=sheet&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Redacted+Script&text=held&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&text=table&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&text=archive&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=10">
+<link rel="stylesheet" href="assets/css/site.css?v=11">
 <link rel="preload" as="image" href="assets/img/715.jpg">
 </head>
 <body>
@@ -89,7 +85,7 @@
   <div class="iris" id="iris">
     <div class="stick wrap">
       <div class="frame" id="irisF"><div class="mos" id="mos"></div></div>
-      <svg id="irisS" aria-hidden="true"><polygon fill="none" stroke="#ece6d9" stroke-width="1" stroke-opacity=".55"></polygon></svg>
+      <svg id="irisS" aria-hidden="true"><polygon fill="none" stroke="#ff5a1f" stroke-width="8" stroke-linejoin="round"></polygon><polygon fill="none" stroke="#070708" stroke-width="3.2" stroke-linejoin="round"></polygon></svg>
       <div class="big fx-open" id="irisBig">open up</div>
       <div class="read wrap"><span>Aperture <b id="irisP">0%</b></span><span>Grid <b class="dv" id="irisG">०१</b> / <span class="dv">०४</span></span></div>
     </div>
@@ -180,7 +176,7 @@
 
 <!-- ०७ CONTACT -->
 <footer class="foot wrap" id="c7" data-name="Contact">
-  <div class="ch-head" style="border-color:var(--line)"><span class="dv">०७</span><h2>Contact</h2><span class="lbl" style="color:var(--ash)">Commissions · prints · exhibitions</span></div>
+  <div class="ch-head" style="border-color:var(--line)"><span class="dv">०७</span><h2><span class="fx-con">Con</span><span class="fx-tact">tact</span></h2><span class="lbl" style="color:var(--ash)">Commissions · prints · exhibitions</span></div>
   <div class="chero">
   <figure class="chero-img"><img id="cImg" alt="Frame 19, a figure in a lit window beside a red wall"></figure>
   <div class="chero-red">
@@ -192,8 +188,6 @@
   </div>
   <div class="cr-rib" aria-label="Recent frames"><div id="crRib"></div></div>
   <div class="stack" aria-label="Sriharsh Ganti">
-    <div class="ln" aria-hidden="true"><span>Sriharsh</span></div>
-    <div class="ln" aria-hidden="true"><span>Sriharsh</span></div>
     <div class="ln" aria-hidden="true"><span>Sriharsh</span></div>
     <div class="ln" aria-hidden="true"><span>Sriharsh</span></div>
     <div class="ln full"><span>Sriharsh</span></div>
@@ -227,15 +221,8 @@
         <a href="mailto:gantisriharsh@gmail.com">Email</a>
       </div>
       <p class="lbl" style="margin:0 0 10px">Field notes · tap a card to turn it over</p>
-      <div class="notes" id="notes">
-        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०१</span>On the road<small>Where</small></span><span class="face b"><span class="k">०१</span>Has photographed in Greece, Mumbai and across Europe. The archive grows faster than the edit.</span></span></button>
-        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०२</span>Philosophy<small>Why no faces</small></span><span class="face b"><span class="k">०२</span>The face is the least interesting part of a portrait. Light, smoke, a hand or a shadow usually says more.</span></span></button>
-        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०३</span>After dark<small>Sound</small></span><span class="face b"><span class="k">०३</span>Plays hypnotic psytrance, downtempo and alternative techno as The Ring, and built a visualiser that turns a set into light in real time.</span></span></button>
-        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०४</span>Kit<small>What he carries</small></span><span class="face b"><span class="k">०४</span>Two Canon bodies, a 700D and an M3, both well past their launch dates and still in service.</span></span></button>
-        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०५</span>Confession<small>The archive</small></span><span class="face b"><span class="k">०५</span>920 frames in the final-edits folder, 128 of them exact duplicates. He is working on it.</span></span></button>
-        <button class="nc" aria-pressed="false"><span class="in"><span class="face f"><span class="k">०६</span>Time<small>How he sorts</small></span><span class="face b"><span class="k">०६</span>His plates are filed by the hour their light belongs to. Turn the ring in chapter ०३ to walk through a day of it.</span></span></button>
-      </div>
-      <button class="tog" id="deal" style="margin-top:14px;color:var(--bone)">Deal the cards again</button>
+      <div class="notes" id="notes" aria-live="polite"></div>
+      <div class="dealrow"><button class="tog" id="deal" style="color:var(--bone)">Deal three more</button><span class="lbl" id="dealN"></span></div>
       <p class="lbl" style="margin:22px 0 0">Start a conversation · ask him about</p>
       <div class="askabout">
         <a href="mailto:gantisriharsh@gmail.com?subject=Why%20are%20the%20faces%20missing%3F">why the faces are missing</a>
@@ -271,6 +258,6 @@
   <div class="lensx" id="lensx"></div>
   <div class="bar"><button class="mk" id="lmark" aria-pressed="false">Mark as select</button><button id="lprev">◀ Prev</button><button id="lnext">Next ▶</button><button id="lx">Close</button></div>
 </div>
-<script src="assets/js/site.js?v=10"></script>
+<script src="assets/js/site.js?v=11"></script>
 </body>
 </html>
