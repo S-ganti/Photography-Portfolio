@@ -554,3 +554,40 @@ a{color:inherit}
 @media(max-width:900px){.top .mark{font-size:24px}}
 @media(max-width:560px){.top .mark{font-size:21px}}
 @media(hover:none){.top .mark span{font:400 .86em 'Monoton',var(--wide);color:var(--ember)}}
+
+/* v18 */
+.hero.freeze .lit{-webkit-mask-image:none;mask-image:none}
+.hero.freeze .lampdot{opacity:0}
+.hero .fz{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--ember);z-index:6;pointer-events:none}
+.hero.freeze .fz{animation:fz 2.6s linear forwards}
+@keyframes fz{to{width:100%}}
+@media(hover:none){.withheld .wdark{background:radial-gradient(circle min(64vw,380px) at var(--wx) var(--wy),transparent 0,rgba(7,7,8,.25) 45%,rgba(7,7,8,.74) 80%)}}
+.iris{height:640vh}
+.foc{position:absolute;inset:0;cursor:zoom-in}
+.iris .frame .foc img{position:absolute;object-fit:cover;transform-origin:0 0;opacity:0;backface-visibility:hidden;filter:none}
+.foc img.base{box-shadow:0 0 0 4px var(--ink),0 0 0 6px var(--ember),0 0 0 9px var(--ink),0 0 0 10px var(--ember)}
+.gate{position:absolute;left:0;top:0;border:2px solid var(--ember);box-shadow:inset 0 0 0 3px var(--ink),inset 0 0 0 5px var(--ember);pointer-events:none;opacity:0;z-index:3}
+.gl{position:absolute;pointer-events:none;background:var(--ember);opacity:0;z-index:2}
+.gl.gh{left:0;right:0;top:0;height:1px}.gl.gv{top:0;bottom:0;left:0;width:1px}
+.fstrip{position:absolute;inset:0;pointer-events:none;z-index:4}
+.ft{position:absolute;padding:0;border:0;background:#000;pointer-events:auto;cursor:pointer;opacity:.4;transition:opacity .3s,box-shadow .3s;box-shadow:0 0 0 1px #3a363c}
+.iris .frame .ft img{width:100%;height:100%;object-fit:cover;display:block}
+.ft.past{opacity:.22}
+.ft.on{opacity:1;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--ember),0 0 0 6px var(--ink),0 0 0 7px var(--ember)}
+.ft:hover{opacity:.85}
+.cs.solo{grid-template-columns:minmax(0,340px)!important;justify-content:center}
+.qbox{margin:9vh 0 4vh;display:grid;gap:14px}
+.qhead{display:flex;justify-content:space-between;gap:14px}
+.qslip{position:relative;display:grid;place-items:center;min-height:clamp(200px,30vh,320px);padding:clamp(28px,5vw,64px);background:#0e0d10;color:var(--bone);border:2px solid var(--ember);box-shadow:inset 0 0 0 4px var(--ink),inset 0 0 0 6px var(--ember);cursor:pointer;overflow:hidden;text-align:center;transform:rotate(var(--tilt,0deg));transition:transform .5s cubic-bezier(.3,1.4,.5,1)}
+.qslip::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(255,90,31,.05) 22px 23px);pointer-events:none}
+.qin{display:grid;gap:16px;max-width:900px}
+.qt{font:italic 400 clamp(26px,3.6vw,52px)/1.08 var(--serif);letter-spacing:-.01em}
+.qt.dev{font:600 clamp(24px,3.2vw,46px)/1.35 var(--dev);font-style:normal}
+.qe{font:500 11px/1.6 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ember)}
+.qslip.go .qin{animation:qgo .6s cubic-bezier(.3,1,.4,1)}
+@keyframes qgo{0%{transform:none;opacity:1}38%{transform:translateY(-70%) rotate(-2deg);opacity:0;filter:blur(6px)}40%{transform:translateY(70%) rotate(2deg);opacity:0}100%{transform:none;opacity:1;filter:none}}
+.qslip.go{animation:qflash .6s}
+@keyframes qflash{0%,100%{background:#0e0d10}30%{background:#1d0f08}}
+.qrow{display:flex;gap:14px;align-items:center}
+.qkey{width:56px;height:56px;font-size:18px}
+@media(prefers-reduced-motion:reduce){.qslip.go .qin,.qslip.go{animation:none}}

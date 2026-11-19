@@ -11,7 +11,10 @@
 <meta property="og:image" content="https://s-ganti.github.io/Photography-Portfolio/assets/img/715.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#070708">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
 <title>Sriharsh Ganti Photography</title>
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +23,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rock+Salt&text=sheet&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Redacted+Script&text=Gantiheld&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&text=archive&display=swap">
-<link rel="stylesheet" href="assets/css/site.css?v=17">
+<link rel="stylesheet" href="assets/css/site.css?v=18">
 <link rel="preload" as="image" href="assets/img/715.jpg">
 </head>
 <body>
@@ -52,7 +55,7 @@
 <section class="hero wrap nocur" id="c1" data-name="Light" data-cur="lamp">
   <img class="ghost" id="cg" alt="">
   <img class="lit" id="cl" alt="">
-  <div class="fl"></div>
+  <div class="fl"></div><div class="fz" aria-hidden="true"></div>
   <div class="lampdot" aria-hidden="true"></div>
   <p class="hint" id="hint">Move the light · click for the shutter</p>
   <h1 class="vh">Sriharsh Ganti</h1>
@@ -84,10 +87,10 @@
   </div>
   <div class="iris" id="iris">
     <div class="stick wrap">
-      <div class="frame" id="irisF"><div class="mos" id="mos"></div></div>
+      <div class="frame" id="irisF"><div class="foc" id="foc" data-cur="view"></div><i class="gl gh" id="gl0"></i><i class="gl gh" id="gl1"></i><i class="gl gv" id="gl2"></i><i class="gl gv" id="gl3"></i><div class="gate" id="gate"></div><div class="fstrip" id="fstrip"></div></div>
       <svg id="irisS" aria-hidden="true"><polygon fill="none" stroke="#ff5a1f" stroke-width="8" stroke-linejoin="round"></polygon><polygon fill="none" stroke="#070708" stroke-width="3.2" stroke-linejoin="round"></polygon></svg>
       <div class="big fx-open" id="irisBig">open up</div>
-      <div class="read wrap"><span>Aperture <b id="irisP">0%</b></span><span>Grid <b class="dv" id="irisG">०१</b> / <span class="dv">०४</span></span></div>
+      <div class="read wrap"><span>Aperture <b id="irisP">0%</b></span><span>Frame <b class="dv" id="irisG">०१</b> / <span class="dv">०७</span> · <b id="irisN"></b></span></div>
     </div>
   </div>
 </section>
@@ -223,14 +226,20 @@
       <p class="lbl" style="margin:0 0 10px">Field notes · tap a card to turn it over</p>
       <div class="notes" id="notes" aria-live="polite"></div>
       <div class="dealrow"><button class="tog" id="deal" style="color:var(--bone)">Deal three more</button><span class="lbl" id="dealN"></span></div>
-      <p class="lbl" style="margin:22px 0 0">Start a conversation · ask him about</p>
+      <p class="lbl" style="margin:22px 0 0">Start a conversation · ask me about</p>
       <div class="askabout">
         <a href="mailto:gantisriharsh@gmail.com?subject=Why%20are%20the%20faces%20missing%3F">why the faces are missing</a>
         <a href="mailto:gantisriharsh@gmail.com?subject=The%20photo%20behind%20the%20smoke">the photo behind the smoke</a>
-        <a href="mailto:gantisriharsh@gmail.com?subject=What%20would%20you%20play%20at%20golden%20hour%3F">what he'd play at golden hour</a>
-        <a href="mailto:gantisriharsh@gmail.com?subject=Where%20should%20you%20shoot%20next%3F">where he should shoot next</a>
+        <a href="mailto:gantisriharsh@gmail.com?subject=What%20would%20you%20play%20at%20golden%20hour%3F">what I'd play at golden hour</a>
+        <a href="mailto:gantisriharsh@gmail.com?subject=Where%20should%20you%20shoot%20next%3F">where I should shoot next</a>
       </div>
     </div>
+  </section>
+
+  <section class="qbox" id="qbox" aria-label="Quotes">
+    <div class="qhead"><span class="lbl">Fortune slot · one quote per press</span><span class="lbl" id="qN">००/१३</span></div>
+    <button class="qslip" id="qslip" aria-live="polite"><span class="qin" id="qin"><span class="qt">Press for a quote.</span><span class="qe">No refunds. Mild wisdom, occasional nonsense.</span></span></button>
+    <div class="qrow"><button class="key sig qkey" id="qgo" aria-label="Another quote">▶</button><span class="lbl">Press the key, or the slip</span></div>
   </section>
 
   <div class="back"><span>Based in Bangalore · working across India and Europe</span><button id="toTop">Back to the dark ↑</button></div>
@@ -258,6 +267,6 @@
   <div class="lensx" id="lensx"></div>
   <div class="bar"><button class="mk" id="lmark" aria-pressed="false">Mark as select</button><button id="lprev">◀ Prev</button><button id="lnext">Next ▶</button><button id="lx">Close</button></div>
 </div>
-<script src="assets/js/site.js?v=17"></script>
+<script src="assets/js/site.js?v=18"></script>
 </body>
 </html>

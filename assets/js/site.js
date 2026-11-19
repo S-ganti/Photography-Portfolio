@@ -8,11 +8,11 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 
 /* ---------- content ---------- */
-const TOD=[{h:0,name:'Late night',imgs:[809,876],c:'#3c5fd6',arc:'#22345f'},{h:3,name:'First light',imgs:[659,424],c:'#c9b8e0',arc:'#8e86a8'},{h:6,name:'Morning',imgs:[518,664],c:'#f2d9a0',arc:'#e7cf96'},{h:9,name:'High sun',imgs:[891,200],c:'#fff4d6',arc:'#f4efe2'},{h:12,name:'Afternoon',imgs:[874,198],c:'#efcf7c',arc:'#e9c46a'},{h:15,name:'Golden hour',imgs:[410,408],c:'#ff8a3d',arc:'#ff7a33'},{h:18,name:'Dusk',imgs:[216,418],c:'#e0552b',arc:'#c4452a'},{h:21,name:'Night',imgs:[865,641],c:'#ff9a3c',arc:'#5a3a1c'}];
+const TOD=[{h:0,name:'Late night',imgs:[809,811,876],c:'#3c5fd6',arc:'#22345f'},{h:3,name:'First light',imgs:[659,255,424],c:'#c9b8e0',arc:'#8e86a8'},{h:6,name:'Morning',imgs:[518,875,664],c:'#f2d9a0',arc:'#e7cf96'},{h:9,name:'High sun',imgs:[891,540,200],c:'#fff4d6',arc:'#f4efe2'},{h:12,name:'Afternoon',imgs:[874,254,198],c:'#efcf7c',arc:'#e9c46a'},{h:15,name:'Golden hour',imgs:[410,525,408],c:'#ff8a3d',arc:'#ff7a33'},{h:18,name:'Dusk',imgs:[216,241,418],c:'#e0552b',arc:'#c4452a'},{h:21,name:'Night',imgs:[865,228,641],c:'#ff9a3c',arc:'#5a3a1c'}];
 const COVERS=[143,144,406,410,475,476,518,238,346,229,162,176,177,178];
-const MOS=[914,252,181,890,665,478,842];
+const MOS=[914,252,181,890,665,478,842];const FDV=['०१','०२','०३','०४','०५','०६','०७'];
 const BRUSH=[245,508,479,399,775,436,357,65];
-const TT={4:['street','light'],5:['night'],84:['motion'],90:['night','light'],131:['sea'],146:['built','colour'],187:['silhouette','light'],213:['motion'],223:['motion','abstract'],235:['built'],242:['night','silhouette'],260:['night'],274:['street'],285:['abstract','light'],288:['built','sea'],292:['night','abstract'],313:['night','motion','colour'],319:['built','silhouette'],333:['sea','motion'],417:['built','colour'],430:['motion','abstract'],454:['motion'],466:['sea','colour'],494:['motion','sea'],504:['silhouette','light'],515:['silhouette','light'],517:['built','light'],527:['abstract','colour'],544:['motion','street'],589:['built'],626:['abstract','built'],645:['motion','night'],660:['motion','abstract'],680:['night','street'],704:['built','night'],729:['light','street'],772:['motion'],779:['motion','colour'],780:['sea','silhouette'],792:['sea'],844:['street','night'],850:['motion'],884:['street'],894:['motion','abstract'],906:['motion','sea'],915:['silhouette']};
+const TT={77:['colour','light'],191:['built','colour'],196:['motion','colour'],222:['motion','abstract','colour'],523:['abstract','colour'],806:['motion','colour'],808:['night','motion','colour'],4:['street','light'],5:['night'],84:['motion'],90:['night','light'],131:['sea'],146:['built','colour'],187:['silhouette','light'],213:['motion'],223:['motion','abstract'],235:['built'],242:['night','silhouette'],260:['night'],274:['street'],285:['abstract','light'],288:['built','sea'],292:['night','abstract'],313:['night','motion','colour'],319:['built','silhouette'],333:['sea','motion'],417:['built','colour'],430:['motion','abstract'],454:['motion'],466:['sea','colour'],494:['motion','sea'],504:['silhouette','light'],515:['silhouette','light'],517:['built','light'],527:['abstract','colour'],544:['motion','street'],589:['built'],626:['abstract','built'],645:['motion','night'],660:['motion','abstract'],680:['night','street'],704:['built','night'],729:['light','street'],772:['motion'],779:['motion','colour'],780:['sea','silhouette'],792:['sea'],844:['street','night'],850:['motion'],884:['street'],894:['motion','abstract'],906:['motion','sea'],915:['silhouette']};
 const TABLE=Object.keys(TT).map(Number);
 const ROLL=[406,770,144,460,427,489,431,790,398,143,238,346],VERBS=['wake','look','climb','walk','rest','swim','drift','scatter','anchor','glow','rush','reflect'];
 const SHEET=[482,74,82,194,803,15,10,873,215,266,535,451,193,584,669];
@@ -23,16 +23,16 @@ Object.entries(ST).forEach(([n,v])=>{n=+n;if(!Object.values(ARCH).some(a=>a.incl
 const POOL={};Object.entries(ARCH).forEach(([k,v])=>v.forEach(n=>(POOL[n]=POOL[n]||[]).push(k)));
 const AL=(()=>{const ks=Object.keys(ARCH),out=[],mx=Math.max(...ks.map(k=>ARCH[k].length));for(let i=0;i<mx;i++)ks.forEach(k=>{if(ARCH[k][i]!==undefined)out.push({n:ARCH[k][i],k})});return out})();
 $('#film').innerHTML=ROLL.map((n,i)=>`<figure data-cur="develop"><figcaption><span class="dv">${DV(i+1)}</span><span class="vb">${VERBS[i]}</span><span>▸ ${n}</span></figcaption><img data-n="${n}" alt="Frame ${n}, ${VERBS[i]}"></figure>`).join('');
-$('#mos').innerHTML=MOS.map(n=>`<div class="tl"><img data-n="${n}" alt="Frame ${n}"><span>#${n}</span></div>`).join('');
+$('#foc').innerHTML=MOS.map((n,k)=>`<img data-n="${n}" alt="Frame ${n}" draggable="false">`).join('');$('#fstrip').innerHTML=MOS.map((n,k)=>`<button class="ft" data-k="${k}" aria-label="Go to frame ${n}"><img data-n="${n}" alt=""></button>`).join('');
 let SHEETN=[],manualTheme=null,sugOff=false;
 function sugTheme(){if(manualTheme)return[manualTheme];if(sugOff)return null;const picks=[...sel].filter(n=>TT[n]);if(!picks.length)return null;const cnt={};picks.forEach(n=>TT[n].forEach(k=>cnt[k]=(cnt[k]||0)+1));return Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,2).map(x=>x[0])}
-function renderSheet(anim){const cs=$('#cs'),mine=[...sel],top=sugTheme(),slots=Math.max(15,Math.ceil((mine.length+1)/5)*5);let sug=[];
+function renderSheet(anim){const cs=$('#cs'),mine=[...sel],top=sugTheme(),slots=top?Math.max(15,Math.ceil((mine.length+1)/5)*5):mine.length+1;let sug=[];
   if(top){const r=rnd(top.join('').length*17+mine.length);sug=Object.keys(POOL).map(Number).filter(n=>!sel.has(n)).map(n=>({n,s:POOL[n].reduce((s,k)=>s+(k===top[0]?2:k===top[1]?1:0),0),j:r()})).filter(o=>o.s>0).sort((a,b)=>b.s-a.s||a.j-b.j).map(o=>o.n).slice(0,slots-mine.length)}
   SHEETN=[...mine,...sug];let h='';
   for(let i=0;i<slots;i++){const n=SHEETN[i];
     if(n!==undefined){const s=i>=mine.length;h+=`<button class="cf${s?' sug':' sel'}" data-i="${i}" data-n2="${n}" data-cur="loupe" aria-label="${s?'Suggested':'Your frame'}: ${n}"><div class="ph"><img src="${I[n]}" alt="" loading="lazy" decoding="async"></div><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="50" cy="52" rx="${45+(i%3)}" ry="${44-(i%2)*3}" transform="rotate(${i%2?-4:3} 50 50)"/></svg><span class="x" aria-hidden="true">✕</span>${s?'<span class="plus" aria-hidden="true">+</span>':''}<div class="lab"><span class="dv">${DV(i+1)}</span><span>${s?'suggested · ':''}#${n}</span></div></button>`}
     else h+=`<div class="cf empty" aria-hidden="true"><div class="ph"><span>${i===SHEETN.length?'Empty frame · add photographs from anywhere on the site':''}</span></div><div class="lab"><span class="dv">${DV(i+1)}</span><span>empty</span></div></div>`}
-  cs.innerHTML=h;if(anim){cs.classList.remove('recut');void cs.offsetWidth;cs.classList.add('recut')}
+  cs.innerHTML=h;cs.classList.toggle('solo',slots===1);if(anim){cs.classList.remove('recut');void cs.offsetWidth;cs.classList.add('recut')}
   const tn=$('#tune');tn.hidden=!top;if(top){tn.innerHTML=`Suggestions ${manualTheme?'for':'from your light-table picks'} · <b>${top.map(k=>MODE[k]).join(' + ')}</b> · tap one, then add it<button id="tuneX">Clear suggestions</button>`;$('#tuneX').onclick=()=>{manualTheme=null;sugOff=true;fillChips();renderSheet(true)}}}
 const mq='<span>Suspended <em>Reverie</em></span><span class="dv">●</span><span>Un<em>faced</em></span><span class="dv">●</span><span>After<em>image</em></span><span class="dv">●</span>';
 $('#marq').innerHTML=mq+mq+mq+mq;
@@ -65,14 +65,21 @@ function chapter(){if(!devDone)return;const c=document.getElementById(curCh);con
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){curCh=e.target.id;$$('#rail a').forEach(a=>a.classList.toggle('on',a.dataset.c===curCh));chapter()}})},{rootMargin:'-45% 0px -50% 0px'});
 chs.forEach(s=>io.observe(s));
 
+const TOUCH=matchMedia('(hover:none)').matches;
 /* ---------- ०१ hero lamp, flash, meter ---------- */
 const hero=$('#c1');
-let coverN=COVERS[Math.floor(Math.random()*COVERS.length)];
-const pickCover=()=>{let n;do{n=COVERS[Math.floor(Math.random()*COVERS.length)]}while(n===coverN&&COVERS.length>1);return n};
-function setCover(n){coverN=n;const pre=new Image();pre.onload=()=>{$('#cg').src=pre.src;$('#cl').src=pre.src;$('#cl').alt='Cover, frame '+n;$('#coverN').textContent='#'+n;hero.classList.remove('swap');mdata=null;mimg.src=pre.src};pre.src=I[n]}let tx=.5,ty=.42,lx=.5,ly=.42,lastMove=-1e9;
+let coverN=-1,bag=[],frozen=false;
+const pickCover=()=>{if(!bag.length){bag=COVERS.slice();for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]]}if(bag.length>1&&bag[bag.length-1]===coverN)[bag[0],bag[bag.length-1]]=[bag[bag.length-1],bag[0]]}return bag.pop()};coverN=pickCover();
+function setCover(n){coverN=n;const pre=new Image();pre.onload=()=>{$('#cg').src=pre.src;$('#cl').src=pre.src;$('#cl').alt='Cover, frame '+n;$('#coverN').textContent='#'+n;hero.classList.remove('swap','freeze');frozen=false;mdata=null;mimg.src=pre.src};pre.src=I[n]}let tx=.5,ty=.42,lx=.5,ly=.42,lastMove=-1e9;
 hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=(e.clientY-r.top)/r.height;lastMove=performance.now();$('#hint').style.opacity=.0});
-function flash(){hero.classList.remove('flash');void hero.offsetWidth;hero.classList.add('flash','swap');shutter();setTimeout(()=>setCover(pickCover()),120);setTimeout(()=>hero.classList.remove('flash'),650)}
-hero.addEventListener('click',flash);
+function flash(){if(frozen)return;frozen=true;hero.classList.remove('flash');void hero.offsetWidth;hero.classList.add('flash','freeze');shutter();setTimeout(()=>hero.classList.remove('flash'),650);
+  setTimeout(()=>{hero.classList.add('swap');setTimeout(()=>setCover(pickCover()),380)},2600)}
+hero.addEventListener('click',e=>{if(holdLong){holdLong=false;return}flash()});
+/* touch: hold to expose */
+let holdT=0,holdOn=false,holdLong=false,rV=0;
+hero.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;holdOn=true;holdT=performance.now();const r=hero.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=(e.clientY-r.top)/r.height;lastMove=performance.now()});
+['pointerup','pointercancel','pointerleave'].forEach(ev=>hero.addEventListener(ev,()=>{if(!holdOn)return;holdOn=false;if(performance.now()-holdT>320)holdLong=true;setTimeout(()=>holdLong=false,400)}));
+if(TOUCH){$('#hint').textContent='Hold to expose · tap for the shutter';$('#wh .ch-head .lbl').textContent='Scroll to carry the lamp down the wall'}
 const mc=document.createElement('canvas');mc.width=160;mc.height=100;const mctx=mc.getContext('2d',{willReadFrequently:true});let mdata=null;
 const mimg=new Image();mimg.onload=()=>{try{mctx.clearRect(0,0,mc.width,mc.height);const r=hero.getBoundingClientRect();mc.height=Math.round(160*r.height/r.width)||100;const s=Math.min(mc.width/mimg.width,mc.height/mimg.height,1e9);mctx.fillStyle='#070708';mctx.fillRect(0,0,mc.width,mc.height);mctx.drawImage(mimg,(mc.width-mimg.width*s)/2,(mc.height-mimg.height*s)/2,mimg.width*s,mimg.height*s);mdata=mctx.getImageData(0,0,mc.width,mc.height).data}catch(_){mdata=null}};
 setCover(coverN);
@@ -90,22 +97,38 @@ function thesis(){const r=th.getBoundingClientRect(),p=clamp((innerHeight*.85-r.
 const wh=$('#wh');let wtx=.5,wty=.4,wx=.5,wy=.4,wlast=-1e9;
 wh.addEventListener('pointermove',e=>{const r=wh.getBoundingClientRect();wtx=(e.clientX-r.left)/r.width;wty=(e.clientY-r.top)/r.height;wlast=performance.now()});
 /* iris */
-const irisPolys=$$('#irisS polygon');const iris=$('#iris'),irisF=$('#irisF'),irisPoly=$('#irisS polygon'),irisS=$('#irisS'),tiles=$$('#mos .tl');
-const L1=[[0,0,8,100],[8,0,14,100],[22,0,30,100],[52,0,10,100],[62,0,20,100],[82,0,6,100],[88,0,12,100]];
-const L2=[[4,6,40,56],[46,6,22,30],[70,6,26,18],[46,38,22,24],[70,26,26,36],[4,64,58,30],[64,64,32,30]];
-const L3=[[30,14,40,72],[9,10,1.4,80],[14,10,1.4,80],[74,46,22,2],[74,52,22,2],[2,80,22,14],[84,4,12,26]];
-const L4=[...Array(7)].map((_,i)=>[i*13,i*12,22,28]),LS=[L1,L2,L3,L4];
-let irisPS=0,irisLast=-1;
-function irisDraw(){const r=iris.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const pt=clamp(-r.top/(r.height-innerHeight),0,1);irisPS+=RM?pt-irisPS:(pt-irisPS)*.075;if(Math.abs(pt-irisPS)<.0005)irisPS=pt;const p=irisPS;if(p===irisLast)return;irisLast=p;
-  const w=innerWidth,h=innerHeight,op=clamp(p/.24,0,1),R=10+Math.pow(op,1.3)*Math.hypot(w,h)*.56,rot=op*120*Math.PI/180;
+const irisPolys=$$('#irisS polygon');const iris=$('#iris'),irisF=$('#irisF'),irisS=$('#irisS');
+const fImgs=$$('#foc img'),fThumbs=$$('#fstrip .ft'),gate=$('#gate'),gls=[0,1,2,3].map(k=>$('#gl'+k)),FN=MOS.length;
+let irisPS=0,irisLast=-1,FS=[],FT=[],fAsp=MOS.map(()=>1.5),fCur=-1,fBase=-1,fInc=-1;
+function fLayout(){const W=irisF.clientWidth,H=irisF.clientHeight,sumA=fAsp.reduce((s,a)=>s+a,0),gap=W<600?6:10;
+  let th=clamp(H*.085,40,80);th=Math.min(th,(W*.92-gap*(FN-1))/sumA);const tw=sumA*th+gap*(FN-1),ty=H-(W<600?64:76)-th;let x=(W-tw)/2;
+  FT=fAsp.map(a=>{const r={x,y:ty,w:a*th,h:th};x+=a*th+gap;return r});
+  fThumbs.forEach((b,k)=>{const r=FT[k];b.style.cssText=`left:${r.x.toFixed(1)}px;top:${r.y.toFixed(1)}px;width:${r.w.toFixed(1)}px;height:${r.h.toFixed(1)}px`});
+  const top=Math.max(70,H*.1),bot=ty-(W<600?18:26),mw=W*(W<600?.92:.8),mh=bot-top;
+  FS=fAsp.map(a=>{let w=mw,h=w/a;if(h>mh){h=mh;w=h*a}return{x:(W-w)/2,y:top+(mh-h)/2,w,h}});
+  fImgs.forEach((im,k)=>{const r=FS[k];im.style.left=r.x.toFixed(1)+'px';im.style.top=r.y.toFixed(1)+'px';im.style.width=r.w.toFixed(1)+'px';im.style.height=r.h.toFixed(1)+'px'});irisLast=-1}
+fThumbs.forEach((b,k)=>{const im=b.querySelector('img'),set=()=>{if(im.naturalWidth){fAsp[k]=clamp(im.naturalWidth/im.naturalHeight,.55,2.4);fLayout()}};if(im.complete)set();else im.addEventListener('load',set,{once:true});
+  b.addEventListener('click',()=>{const top=iris.getBoundingClientRect().top+scrollY,p=.2+.76*(k/(FN-1));scrollTo({top:top+p*(iris.offsetHeight-innerHeight)+2,behavior:RM?'auto':'smooth'})})});
+addEventListener('resize',fLayout);fLayout();
+$('#foc').addEventListener('click',()=>{if(fCur>=0)gOpenAt(MOS,fCur,fImgs[fCur])});
+const lr=(a,b,e)=>a+(b-a)*e,lrR=(A,B,e)=>({x:lr(A.x,B.x,e),y:lr(A.y,B.y,e),w:lr(A.w,B.w,e),h:lr(A.h,B.h,e)});
+function irisDraw(){const r=iris.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const pt=clamp(-r.top/(r.height-innerHeight),0,1);irisPS+=RM?pt-irisPS:(pt-irisPS)*.18;if(Math.abs(pt-irisPS)<.0004)irisPS=pt;const p=irisPS;if(p===irisLast)return;irisLast=p;
+  const w=innerWidth,h=innerHeight,op=clamp(p/.2,0,1),R=10+Math.pow(op,1.3)*Math.hypot(w,h)*.56,rot=op*120*Math.PI/180;
   const pts=[...Array(7)].map((_,i)=>{const a=rot+i*2*Math.PI/7;return[w/2+R*Math.cos(a),h/2+R*Math.sin(a)]});
-  irisF.style.clipPath=`polygon(${pts.map(q=>q[0].toFixed(1)+'px '+q[1].toFixed(1)+'px').join(',')})`;
-  const m=clamp((p-.24)/.72,0,1)*3;
-  tiles.forEach((el,i)=>{const mi=clamp(m*1.25-(i/6)*.75,0,3),sg=Math.min(2,Math.floor(mi)),f0=mi-sg,f=f0*f0*f0*(f0*(f0*6-15)+10),a=LS[sg][i],b=LS[sg+1][i],v=a.map((x,k)=>x+(b[k]-x)*f);
-    el.style.left=v[0].toFixed(3)+'%';el.style.top=v[1].toFixed(3)+'%';el.style.width=v[2].toFixed(3)+'%';el.style.height=v[3].toFixed(3)+'%'});
-  $('#irisG').textContent=DV(Math.min(4,1+Math.round(m)));
+  irisF.style.clipPath=op>=1?'none':`polygon(${pts.map(q=>q[0].toFixed(1)+'px '+q[1].toFixed(1)+'px').join(',')})`;
   irisS.setAttribute('viewBox',`0 0 ${w} ${h}`);{const P=pts.map(q=>q.map(v=>v.toFixed(1)).join(',')).join(' ');irisPolys.forEach(pg=>pg.setAttribute('points',P))}
-  $('#irisP').textContent=Math.round(op*100)+'%';$('#irisBig').style.opacity=(1-op*2.2).toFixed(2)}
+  $('#irisP').textContent=Math.round(op*100)+'%';$('#irisBig').style.opacity=(1-op*2.2).toFixed(2);
+  if(!FS.length)return;
+  const m=clamp((p-.2)/.76,0,1)*(FN-1),i=Math.min(FN-2,Math.floor(m)),f=m-i,e0=clamp((f-.42)/.58,0,1),e=e0*e0*(3-2*e0),inc=e>0?i+1:-1;
+  fImgs.forEach((im,k)=>{let o=0,tr='none',z=0;
+    if(k===i){const s=1-.06*e;o=1-.8*e;tr=`translate(${(FS[k].w*(1-s)/2).toFixed(1)}px,${(FS[k].h*(1-s)/2).toFixed(1)}px) scale(${s.toFixed(4)})`;z=1}
+    else if(k===inc){const T=FT[k],S=FS[k],sc=lr(T.w/S.w,1,e);o=1;tr=`translate(${(lr(T.x,S.x,e)-S.x).toFixed(1)}px,${(lr(T.y,S.y,e)-S.y).toFixed(1)}px) scale(${sc.toFixed(4)})`;z=2}
+    im.style.opacity=o;im.style.transform=tr;im.style.zIndex=z;im.classList.toggle('base',k===i&&inc<0)});
+  const G=inc>=0?lrR(FT[inc],FS[inc],e):FS[i];gate.style.opacity=inc>=0?Math.min(1,e*8).toFixed(2):'0';
+  gate.style.transform=`translate(${(G.x-4).toFixed(1)}px,${(G.y-4).toFixed(1)}px)`;gate.style.width=(G.w+8).toFixed(1)+'px';gate.style.height=(G.h+8).toFixed(1)+'px';
+  const gO=(inc>=0?Math.sin(e*Math.PI):0).toFixed(2);
+  gls[0].style.transform=`translateY(${(G.y-4).toFixed(1)}px)`;gls[1].style.transform=`translateY(${(G.y+G.h+4).toFixed(1)}px)`;gls[2].style.transform=`translateX(${(G.x-4).toFixed(1)}px)`;gls[3].style.transform=`translateX(${(G.x+G.w+4).toFixed(1)}px)`;gls.forEach(g=>g.style.opacity=gO);
+  const cur=e>.5?i+1:i;if(cur!==fCur){fCur=cur;fThumbs.forEach((b,k)=>{b.classList.toggle('on',k===cur);b.classList.toggle('past',k<cur)});$('#irisG').textContent=FDV[cur];$('#irisN').textContent='#'+MOS[cur]}}
 
 /* ---------- ०३ ring: a day of light ---------- */
 {let s='';const P=(r,a)=>[(r*Math.sin(a)).toFixed(2),(-r*Math.cos(a)).toFixed(2)];
@@ -255,17 +278,25 @@ $('#askGo').onclick=()=>{if(!askK)return;const c=ASK[askK];const body='Hi Sri,\n
   const a=document.createElement('a');a.href='mailto:gantisriharsh@gmail.com?subject='+encodeURIComponent(c.t+' enquiry')+'&body='+encodeURIComponent(body);document.body.appendChild(a);a.click();a.remove();$('#askGo').textContent='Opening your email…';setTimeout(()=>$('#askGo').textContent='Write the email ↗',2200)};
 /* about */
 $('#sriImg').src=I['sri'];$('#cImg').src=I[19];$('#portrait').addEventListener('click',()=>$('#portrait').classList.toggle('on'));
+const QUOTES=[["Climb down from your mountain of humility."], ["Going uphill you don't see far ahead. If you see really far ahead, you're probably going downhill."], ["People accept the love they think they deserve."], ["Love moves the sun and the stars, till gravity brings you crashing down."], ["Great football is just 22 millionaires trying to kill each other."], ["Run away from me, or you'll have to embrace the real you."], ["All is one, one is all. The all is the world, and the one is me."], ["दुनिया घूमने वाले अक्सर लोगों में अपना घर बना लेते हैं।", "People who wander the world often end up making their home in people."], ["Show The Tatami Galaxy to your kid before they go to college."], ["One Piece is the greatest piece of fiction ever written."], ["उधारी पैसे की चलती है, किसी और के पंथ या राह की नहीं।", "You can borrow money. You can't borrow someone else's path."], ["Act as if failure is impossible."], ["Seek discomfort."]];
+{let qd=[],qc=0;const qin=$('#qin'),qs=$('#qslip');
+ function qNext(){if(!qd.length){qd=QUOTES.map((_,i)=>i);for(let i=qd.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[qd[i],qd[j]]=[qd[j],qd[i]]}qc=0}
+  const k=qd.pop();qc++;const[a,b]=QUOTES[k],dev=/[ऀ-ॿ]/.test(a);
+  qs.classList.remove('go');void qs.offsetWidth;qs.classList.add('go');tick();
+  setTimeout(()=>{qin.innerHTML=`<span class="qt${dev?' dev':''}">${a}</span>${b?`<span class="qe">${b}</span>`:''}`;qs.style.setProperty('--tilt',((Math.random()-.5)*3).toFixed(2)+'deg')},230);
+  $('#qN').textContent=DV(qc)+'/'+DV(QUOTES.length)}
+ qs.addEventListener('click',qNext);$('#qgo').addEventListener('click',qNext)}
 /* field notes: a deck, dealt three at a time */
-const NOTES=[["On the road", "Where I shoot", "I've photographed in Greece, Mumbai and across Europe. The archive grows faster than I can edit it."], ["Philosophy", "Why you see no faces", "I think the face is the least interesting part of a portrait. Light, smoke, a hand or a shadow usually tells you more. Chapter ०२ is built on that idea."], ["After dark", "The other job", "When I'm not shooting, I DJ as The Ring: hypnotic psytrance, downtempo and alternative techno. I also built a visualiser that turns a set into light in real time. Running a night? Write to me."], ["Kit", "What I carry", "Two Canon bodies, a 700D and an M3. Both are well past their launch dates and still in service."], ["Confession", "About the archive", "My final-edits folder holds 920 frames, and 128 of them are exact duplicates. I'm working on it."], ["Time", "How I sort", "I file my photographs by the hour their light belongs to. Turn the ring in chapter ०३ and you walk through a day of it."], ["1914 energy", "A question I asked an AI", "I once asked Claude, an AI, whether a third world war is plausible, written as a memo in the style of Pyotr Durnovo, who warned the Tsar in 1914 how a great war would break Russia."], ["Next obsession", "Help me pick", "I'm choosing my next deep hobby: superforecasting, competitive Pokémon, poker theory or generative art. The AI voted for forecasting. If you'd vote differently, tell me."], ["Brain hacks", "What survived", "I tested a pile of popular brain hacks against the evidence and kept only the ones that held up, as daily habit trackers."], ["Concept album", "In the works", "I'm cutting a 24-hour day into eight DJ mixes, one for each part of the day, each with its own cover, sound and short film. If you make covers or films and that sounds like your kind of project, get in touch."], ["House rule", "How I use AI", "My rule for any AI I work with: research first, then challenge my reasoning instead of agreeing with me."], ["The photo book", "Coming", "I'm making a book of 20 photographs that celebrates chaos and the moments only a lens can see. If you publish or edit photobooks, I'd like to hear from you."], ["This website", "How it was made", "I built this site with Claude, an AI, over more than ten rounds. Each round started with a list of my notes."], ["Design crush", "Taste", "I want my music to look like Teenage Engineering hardware written in Hindustani script. If you design objects like that, let's talk."], ["Your move", "For you", "Liked a frame? Add it to the contact sheet in chapter ०५ and send it to me. Commissions, prints or just hello: gantisriharsh@gmail.com."]];
+const NOTES=[["On the road", "Where I shoot", "I've photographed in Greece, Mumbai and across Europe. The archive grows faster than I can edit it."], ["Philosophy", "Why you see no faces", "I think the face is the least interesting part of a portrait. Light, smoke, a hand or a shadow usually tells you more. Chapter ०२ is built on that idea."], ["After dark", "The other job", "When I'm not shooting, I DJ as The Ring: hypnotic psytrance, downtempo and alternative techno. I also built a visualiser that turns a set into light in real time. Running a night? Write to me."], ["Kit", "What I carry", "Two Canon bodies, a 700D and an M3. Both are well past their launch dates and still in service."], ["Confession", "About the archive", "My final-edits folder holds 920 frames, and 128 of them are exact duplicates. I'm working on it."], ["Time", "How I sort", "I file my photographs by the hour their light belongs to. Turn the ring in chapter ०३ and you walk through a day of it."], ["1914 energy", "A question I asked an AI", "I once asked Claude, an AI, whether a third world war is plausible, written as a memo in the style of Pyotr Durnovo, who warned the Tsar in 1914 how a great war would break Russia."], ["Next obsession", "Help me pick", "I'm choosing my next deep hobby: superforecasting, competitive Pokémon, poker theory or generative art. The AI voted for forecasting. If you'd vote differently, tell me."], ["Brain hacks", "What survived", "I tested a pile of popular brain hacks against the evidence and kept only the ones that held up, as daily habit trackers."], ["Concept album", "In the works", "I'm cutting a 24-hour day into eight DJ mixes, one for each part of the day, each with its own cover, sound and short film. If you make covers or films and that sounds like your kind of project, get in touch."], ["House rule", "How I use AI", "My rule for any AI I work with: research first, then challenge my reasoning instead of agreeing with me."], ["The photo book", "Coming", "I'm making a book of 20 photographs that celebrates chaos and the moments only a lens can see. If you publish or edit photobooks, I'd like to hear from you."], ["Design crush", "Taste", "I want my music to look like Teenage Engineering hardware written in Hindustani script. If you design objects like that, let's talk."], ["Your move", "For you", "Liked a frame? Add it to the contact sheet in chapter ०५ and send it to me. Commissions, prints or just hello: gantisriharsh@gmail.com."]];
 const notes=$('#notes');let deck=[],dealt=0;
 function shuffleDeck(){deck=NOTES.map((_,i)=>i);for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]]}dealt=0}
-function deal(){if(dealt>=deck.length)shuffleDeck();const hand=deck.slice(dealt,dealt+3);dealt+=3;
+let shownN=0;function deal(){if(dealt>=deck.length)shuffleDeck();let hand=deck.slice(dealt,dealt+3);dealt+=hand.length;shownN=dealt;if(hand.length<3){const keep=hand.slice();shuffleDeck();deck=deck.filter(k=>!keep.includes(k));const extra=deck.slice(0,3-keep.length);dealt=extra.length;deck=[...extra,...deck.slice(extra.length)];hand=[...keep,...extra];deck=[...deck];shownN=NOTES.length}
   notes.innerHTML=hand.map((k,i)=>{const[f,s,b]=NOTES[k];return `<button class="nc" aria-pressed="false" style="--i:${i}"><span class="in"><span class="face f"><span class="k">${DV(k+1)}</span>${f}<small>${s}</small></span><span class="face b"><span class="k">${DV(k+1)}</span>${b}</span></span></button>`}).join('');
   $$('#notes .nc').forEach(c=>{c.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||RM)return;const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
     c.style.setProperty('--rx',(-py*14).toFixed(1)+'deg');c.style.setProperty('--ry',(px*18).toFixed(1)+'deg');c.style.setProperty('--gx',(50+px*90).toFixed(0)+'%');c.style.setProperty('--gy',(50+py*90).toFixed(0)+'%')});
     c.addEventListener('pointerleave',()=>{c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')})});
   notes.classList.remove('dealt');void notes.offsetWidth;notes.classList.add('dealt');
-  $('#dealN').textContent=`Cards ${DV(Math.min(dealt,deck.length))} of ${DV(deck.length)}${dealt>=deck.length?' · next deal reshuffles':''}`}
+  $('#dealN').textContent=`Cards ${DV(Math.min(shownN,NOTES.length))} of ${DV(NOTES.length)}${shownN>=NOTES.length?' · next deal reshuffles':''}`}
 notes.addEventListener('click',e=>{const b=e.target.closest('.nc');if(!b)return;b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true');tick()});
 shuffleDeck();
 const nio=new IntersectionObserver(es=>{if(es[0].isIntersecting){deal();nio.disconnect()}},{threshold:.2});nio.observe(notes);
@@ -340,10 +371,10 @@ function loop(t){
   const sv=scrollY-lastY;lastY=scrollY;vel+=(sv-vel)*.2;
   /* hero */
   if(VIS.hero){const hr=hero.getBoundingClientRect();if(t-lastMove>2600&&!RM){const s=t/1000;tx=.5+.3*Math.sin(s*.33);ty=.44+.22*Math.sin(s*.51+1.3)}
-    lx+=(tx-lx)*.08;ly+=(ty-ly)*.08;hero.style.setProperty('--x',(lx*100).toFixed(2)+'%');hero.style.setProperty('--y',(ly*100).toFixed(2)+'%');{const ci=clEl.getBoundingClientRect();if(ci.width){const px=hr.left+lx*hr.width,py=hr.top+ly*hr.height;clEl.style.setProperty('--ix',((px-ci.left)/ci.width*100).toFixed(2)+'%');clEl.style.setProperty('--iy',((py-ci.top)/ci.height*100).toFixed(2)+'%')}}meter()}
+    lx+=(tx-lx)*.08;ly+=(ty-ly)*.08;{const rt=holdOn?1:0;if(Math.abs(rt-rV)>.002||rV){rV+=(rt-rV)*(holdOn?.05:.12);if(rV<.002)rV=0;hero.style.setProperty('--r',rV?`calc(min(38vw,400px) + ${(rV*140).toFixed(1)}vmax)`:'')}}hero.style.setProperty('--x',(lx*100).toFixed(2)+'%');hero.style.setProperty('--y',(ly*100).toFixed(2)+'%');{const ci=clEl.getBoundingClientRect();if(ci.width){const px=hr.left+lx*hr.width,py=hr.top+ly*hr.height;clEl.style.setProperty('--ix',((px-ci.left)/ci.width*100).toFixed(2)+'%');clEl.style.setProperty('--iy',((py-ci.top)/ci.height*100).toFixed(2)+'%')}}meter()}
   /* thesis + withheld */
   if(VIS.thesis&&sv)thesis();
-  if(VIS.wh){if(t-wlast>2200&&!RM){const s=t/1000;wtx=.5+.38*Math.sin(s*.27);wty=.5+.38*Math.sin(s*.41+.6)}
+  if(VIS.wh){if(TOUCH&&t-wlast>1200){const wr=wh.getBoundingClientRect(),q=clamp((innerHeight*.5-wr.top)/wr.height,0,1);wty=.04+q*.92;wtx=.5+.3*Math.sin(q*Math.PI*4)}else if(t-wlast>2200&&!RM){const s=t/1000;wtx=.5+.38*Math.sin(s*.27);wty=.5+.38*Math.sin(s*.41+.6)}
     wx+=(wtx-wx)*.08;wy+=(wty-wy)*.08;wh.style.setProperty('--wx',(wx*100).toFixed(2)+'%');wh.style.setProperty('--wy',(wy*100).toFixed(2)+'%');{const hr2=heldEl.getBoundingClientRect(),wr2=wh.getBoundingClientRect(),dx=wr2.left+wx*wr2.width-(hr2.left+hr2.width/2),dy=wr2.top+wy*wr2.height-(hr2.top+hr2.height/2),on=Math.hypot(dx,dy)<Math.max(170,hr2.width*.9);if(on!==heldOn){heldOn=on;heldEl.classList.toggle('lit',on)}}}
   if(VIS.iris)irisDraw();
   /* afterimage */
