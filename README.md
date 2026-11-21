@@ -22,7 +22,9 @@ Press `?` on the site to see the keyboard shortcuts.
 index.html
 assets/css/site.css
 assets/js/site.js
-assets/img/<frame>.jpg   web exports, named by archive index
+assets/img/<frame>.jpg   2400px web exports, used on the page
+assets/full/<frame>.jpg  full-resolution originals (metadata stripped, colour profile kept),
+                         loaded only when a photo is opened in the viewer or loupe
 ```
 
 ## Run locally
